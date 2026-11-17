@@ -1,0 +1,502 @@
+{
+  "title": "Could a Grizzly Bear Beat Every Ice Age Predator?",
+  "fps": 30,
+  "voice": "aura-2-zeus-en",
+  "hero": "Grizzly Bear",
+  "tier_title": "Ice Age Threat Ranking",
+  "tiers": [
+    {
+      "label": "S",
+      "color": "#ff7f7f"
+    },
+    {
+      "label": "A",
+      "color": "#ffbf7f"
+    },
+    {
+      "label": "B",
+      "color": "#ffdf7f"
+    },
+    {
+      "label": "C",
+      "color": "#ffff7f"
+    },
+    {
+      "label": "D",
+      "color": "#bfff7f"
+    }
+  ],
+  "opponents": [
+    {
+      "name": "Dire Wolf",
+      "thumb": {
+        "kind": "image",
+        "q": "dire wolf paleoart"
+      }
+    },
+    {
+      "name": "Smilodon",
+      "thumb": {
+        "kind": "image",
+        "q": "smilodon fatalis paleoart"
+      }
+    },
+    {
+      "name": "Short-faced Bear",
+      "thumb": {
+        "kind": "image",
+        "q": "arctodus short-faced bear paleoart"
+      }
+    }
+  ],
+  "beats": [
+    {
+      "seg": "hook",
+      "text": "Picture the biggest bear alive today, a full-grown grizzly, dropped into North America twenty thousand years ago.",
+      "shots": [
+        {
+          "kind": "clip",
+          "q": "grizzly bear walking toward camera"
+        },
+        {
+          "kind": "clip",
+          "q": "glacier aerial footage"
+        },
+        {
+          "kind": "image",
+          "q": "ice age north america megafauna paleoart"
+        }
+      ]
+    },
+    {
+      "seg": "hook",
+      "text": "The ice is a mile thick. The grass is full of giants. And every one of them is hungry.",
+      "shots": [
+        {
+          "kind": "clip",
+          "q": "ice sheet glacier calving"
+        },
+        {
+          "kind": "image",
+          "q": "mammoth steppe paleoart",
+          "at": 6
+        },
+        {
+          "kind": "image",
+          "q": "ice age predators paleoart",
+          "at": 12
+        }
+      ]
+    },
+    {
+      "seg": "hook",
+      "text": "Some of them would barely notice him. One of them would eat him.",
+      "shots": [
+        {
+          "kind": "image",
+          "q": "short-faced bear arctodus paleoart"
+        },
+        {
+          "kind": "clip",
+          "q": "grizzly bear roaring close up",
+          "at": 7
+        }
+      ]
+    },
+    {
+      "seg": "hook",
+      "text": "Three fights. One bear. Let's see how far he gets.",
+      "shots": [
+        {
+          "kind": "clip",
+          "q": "grizzly bears fighting"
+        },
+        {
+          "kind": "clip",
+          "q": "grizzly bear standing up on hind legs",
+          "at": 4
+        }
+      ]
+    },
+    {
+      "seg": "title",
+      "title": "Dire Wolf"
+    },
+    {
+      "seg": "stats",
+      "text": "First up, the dire wolf. It weighed around sixty kilos, noticeably heavier than a grey wolf.",
+      "shots": [
+        {
+          "kind": "image",
+          "q": "dire wolf skeleton museum"
+        }
+      ]
+    },
+    {
+      "seg": "stats",
+      "text": "Scientists have pulled more than four thousand of them out of the La Brea Tar Pits in Los Angeles.",
+      "shots": [
+        {
+          "kind": "receipt",
+          "url": "https://en.wikipedia.org/wiki/Dire_wolf",
+          "find": "La Brea Tar Pits"
+        },
+        {
+          "kind": "image",
+          "q": "la brea tar pits dire wolf skull wall",
+          "at": 9
+        }
+      ]
+    },
+    {
+      "seg": "stats",
+      "text": "That many bodies in one place tells you something. They hunted in packs.",
+      "note": "Pack size is an estimate",
+      "note_at": 9,
+      "shots": [
+        {
+          "kind": "image",
+          "q": "dire wolf pack paleoart"
+        }
+      ]
+    },
+    {
+      "seg": "action",
+      "text": "One on one, this is easy. A grizzly outweighs a single dire wolf five times over.",
+      "shots": [
+        {
+          "kind": "clip",
+          "q": "grizzly bear walking slow motion"
+        }
+      ]
+    },
+    {
+      "seg": "action",
+      "text": "But dire wolves never came one at a time.",
+      "shots": [
+        {
+          "kind": "clip",
+          "q": "wolf pack running snow"
+        }
+      ]
+    },
+    {
+      "seg": "action",
+      "text": "Watch how a modern wolf pack works a bison. Nobody goes for the throat. They just keep it running until it can't.",
+      "shots": [
+        {
+          "kind": "clip",
+          "q": "wolf pack hunting bison yellowstone"
+        },
+        {
+          "kind": "clip",
+          "q": "bison running from wolves",
+          "at": 9
+        }
+      ]
+    },
+    {
+      "seg": "action",
+      "text": "A grizzly can send one wolf flying with a single swipe. The trouble is the five standing behind it.",
+      "shots": [
+        {
+          "kind": "clip",
+          "q": "grizzly bear swipe paw"
+        },
+        {
+          "kind": "clip",
+          "q": "wolves surrounding grizzly bear",
+          "at": 11
+        }
+      ]
+    },
+    {
+      "seg": "action",
+      "text": "In Yellowstone, grizzlies take kills off wolf packs all the time. They walk in, and the wolves back off.",
+      "shots": [
+        {
+          "kind": "clip",
+          "q": "grizzly bear steals wolf kill yellowstone"
+        },
+        {
+          "kind": "clip",
+          "q": "wolves back away from grizzly carcass",
+          "at": 11
+        }
+      ]
+    },
+    {
+      "seg": "tier",
+      "text": "Dire wolves go in C tier. A pack could hurt him, but he walks away.",
+      "tier": {
+        "item": "Dire Wolf",
+        "row": "C"
+      }
+    },
+    {
+      "seg": "title",
+      "title": "Smilodon"
+    },
+    {
+      "seg": "stats",
+      "text": "Next, Smilodon. The North American sabre-tooth weighed up to about two hundred and eighty kilos, close to a big male grizzly.",
+      "shots": [
+        {
+          "kind": "image",
+          "q": "smilodon fatalis skeleton museum"
+        },
+        {
+          "kind": "image",
+          "q": "smilodon fatalis paleoart",
+          "at": 9
+        }
+      ]
+    },
+    {
+      "seg": "stats",
+      "text": "Its jaw opened to around a hundred and twenty degrees. That's how it fit those teeth around a throat.",
+      "shots": [
+        {
+          "kind": "receipt",
+          "url": "https://en.wikipedia.org/wiki/Smilodon",
+          "find": "120"
+        },
+        {
+          "kind": "image",
+          "q": "smilodon skull open jaw",
+          "at": 10
+        }
+      ]
+    },
+    {
+      "seg": "stats",
+      "text": "And it was built heavier up front than any cat alive today, with forelimbs made for pinning prey down.",
+      "shots": [
+        {
+          "kind": "image",
+          "q": "smilodon skeleton forelimbs"
+        },
+        {
+          "kind": "image",
+          "q": "smilodon pinning prey paleoart",
+          "at": 12
+        }
+      ]
+    },
+    {
+      "seg": "action",
+      "text": "Here's the problem with those teeth. They were thin, and they could snap on bone.",
+      "note": "Based on fossil tooth studies",
+      "note_at": 7,
+      "shots": [
+        {
+          "kind": "image",
+          "q": "smilodon canine tooth fossil"
+        }
+      ]
+    },
+    {
+      "seg": "action",
+      "text": "So Smilodon couldn't bite a struggling bear just anywhere. It had to pin him first.",
+      "shots": [
+        {
+          "kind": "clip",
+          "q": "lion pins buffalo"
+        }
+      ]
+    },
+    {
+      "seg": "action",
+      "text": "And pinning a grizzly is a nightmare. That hump on his back is solid muscle, and it powers every swing.",
+      "shots": [
+        {
+          "kind": "clip",
+          "q": "grizzly bear digging"
+        },
+        {
+          "kind": "clip",
+          "q": "grizzly bear hump shoulders close",
+          "at": 7
+        }
+      ]
+    },
+    {
+      "seg": "action",
+      "text": "Tigers do fight brown bears in Russia, and the tiger doesn't always win.",
+      "shots": [
+        {
+          "kind": "clip",
+          "q": "siberian tiger snow"
+        }
+      ]
+    },
+    {
+      "seg": "action",
+      "text": "Smilodon probably wins if it lands the bite first. If it doesn't, the bear breaks those teeth and the fight is over.",
+      "shots": [
+        {
+          "kind": "image",
+          "q": "smilodon attack paleoart"
+        },
+        {
+          "kind": "clip",
+          "q": "grizzly bear charging",
+          "at": 10
+        }
+      ]
+    },
+    {
+      "seg": "tier",
+      "text": "Smilodon goes in A tier. On a good day for the cat, the grizzly is dead.",
+      "tier": {
+        "item": "Smilodon",
+        "row": "A"
+      }
+    },
+    {
+      "seg": "title",
+      "title": "Short-faced Bear"
+    },
+    {
+      "seg": "stats",
+      "text": "Last, the giant short-faced bear. The biggest males may have weighed around nine hundred kilos.",
+      "shots": [
+        {
+          "kind": "image",
+          "q": "arctodus simus skeleton museum"
+        }
+      ]
+    },
+    {
+      "seg": "stats",
+      "text": "On its back legs it stood over three metres tall. Your grizzly comes up to its chest.",
+      "shots": [
+        {
+          "kind": "image",
+          "q": "arctodus skeleton standing"
+        },
+        {
+          "kind": "clip",
+          "q": "grizzly bear standing tall",
+          "at": 10
+        }
+      ]
+    },
+    {
+      "seg": "stats",
+      "text": "Scientists still argue about what it ate. Some think it hunted. Others think it bullied other predators off their kills.",
+      "note": "Its diet is still debated",
+      "note_at": 6,
+      "shots": [
+        {
+          "kind": "receipt",
+          "url": "https://en.wikipedia.org/wiki/Arctodus",
+          "find": "scavenger"
+        },
+        {
+          "kind": "image",
+          "q": "arctodus paleoart",
+          "at": 12
+        }
+      ]
+    },
+    {
+      "seg": "action",
+      "text": "If it was a scavenger, think about what that means. It walked up to Smilodon and took its food.",
+      "shots": [
+        {
+          "kind": "image",
+          "q": "short-faced bear paleoart scavenging"
+        },
+        {
+          "kind": "image",
+          "q": "smilodon kill paleoart",
+          "at": 10
+        }
+      ]
+    },
+    {
+      "seg": "action",
+      "text": "A grizzly does that to wolves today. This bear did it to everything.",
+      "shots": [
+        {
+          "kind": "clip",
+          "q": "grizzly bear eating carcass wolves waiting"
+        }
+      ]
+    },
+    {
+      "seg": "action",
+      "text": "Our grizzly has one thing going for him. He's tough, he's low to the ground, and he fights other bears for a living.",
+      "shots": [
+        {
+          "kind": "clip",
+          "q": "grizzly bears fighting river"
+        },
+        {
+          "kind": "clip",
+          "q": "brown bears fighting katmai",
+          "at": 12
+        }
+      ]
+    },
+    {
+      "seg": "action",
+      "text": "But at nine hundred kilos against three hundred, technique stops mattering.",
+      "shots": [
+        {
+          "kind": "clip",
+          "q": "grizzly bear close up"
+        }
+      ]
+    },
+    {
+      "seg": "action",
+      "text": "Bears settle most fights with size. The smaller bear backs off, and if it doesn't, it gets hurt.",
+      "shots": [
+        {
+          "kind": "clip",
+          "q": "bear standoff river"
+        },
+        {
+          "kind": "clip",
+          "q": "bear backs away from bigger bear",
+          "at": 8
+        }
+      ]
+    },
+    {
+      "seg": "tier",
+      "text": "The short-faced bear goes straight into S tier. This is the one that eats him.",
+      "tier": {
+        "item": "Short-faced Bear",
+        "row": "S"
+      }
+    },
+    {
+      "seg": "wheel",
+      "text": "Bonus round. The wheel picks who he fights next.",
+      "wheel": {
+        "names": [
+          "Cave Lion",
+          "Woolly Rhino",
+          "Cave Hyena",
+          "Ground Sloth",
+          "Mammoth",
+          "Megalania"
+        ],
+        "pick": "Cave Lion"
+      }
+    },
+    {
+      "seg": "outro",
+      "text": "The cave lion. That fight is next.",
+      "shots": [
+        {
+          "kind": "image",
+          "q": "cave lion paleoart"
+        }
+      ]
+    }
+  ]
+}

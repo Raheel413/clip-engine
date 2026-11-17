@@ -1,0 +1,211 @@
+name: Make video
+
+# Push a film (films/<name>/film.json) to main and GitHub does the rest:
+#   1. prepare : hunts footage it can reach from the cloud, screenshots receipts, records the voice,
+#                saves all of that back into the repo, checks the rules, plans the render
+#   2. render  : up to 18 machines each render one piece of the picture at the same time
+#   3. finish  : joins the pieces, mixes and masters the audio, uploads the MP4
+# Or run it by hand: Actions -> Make video -> Run workflow.
+# The MP4, a contact sheet and the credits list appear under Artifacts on the run page.
+
+on:
+  push:
+    branches: [main]
+    paths: ['films/*/film.json']
+  workflow_dispatch:
+    inputs:
+      film:
+        description: Film folder name (films/<name>)
+        required: true
+        default: grizzly-test
+      quality:
+        description: final = 1080p and every shot must be found. draft = 540p, missing shots show as red cards
+        type: choice
+        options: [final, draft]
+        default: final
+      hunt:
+        description: Search for missing footage from GitHub first
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: make-${{ inputs.film || github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    outputs:
+      film: ${{ steps.pick.outputs.film }}
+      sha: ${{ steps.save.outputs.sha }}
+      chunks: ${{ steps.chunks.outputs.chunks }}
+      scale: ${{ steps.pick.outputs.scale }}
+      go: ${{ steps.check.outputs.go }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - id: pick
+        env:
+          INPUT_FILM: ${{ inputs.film }}
+          QUALITY: ${{ inputs.quality || 'final' }}
+        run: |
+          if [ -n "$INPUT_FILM" ]; then film="$INPUT_FILM"
+          else
+            base=$(git rev-parse -q --verify HEAD~1 || git hash-object -t tree /dev/null)
+            film=$(git diff --name-only "$base" HEAD -- 'films/*/film.json' | grep -v '/_' | head -1 | cut -d/ -f2)
+          fi
+          [ -n "$film" ] && [ -f "films/$film/film.json" ] || { echo "::error::No film found (films/$film/film.json)"; exit 1; }
+          echo "film=$film" >> "$GITHUB_OUTPUT"
+          if [ "$QUALITY" = "draft" ]; then echo "scale=0.5" >> "$GITHUB_OUTPUT"; else echo "scale=1" >> "$GITHUB_OUTPUT"; fi
+          echo "Film: $film ($QUALITY)"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg poppler-utils fonts-liberation > /dev/null
+          npm ci --no-audit --no-fund
+          pip install -q -r hunt/requirements.txt
+
+      - name: Hunt footage (what GitHub can reach)
+        if: inputs.hunt != false
+        continue-on-error: true
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          SERPER_API_KEY: ${{ secrets.SERPER_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python hunt/hunt.py "films/${{ steps.pick.outputs.film }}"
+
+      - name: Receipts (page screenshots)
+        continue-on-error: true
+        run: node scripts/receipts.mjs "films/${{ steps.pick.outputs.film }}"
+
+      - name: Voiceover (Deepgram)
+        env:
+          DEEPGRAM_API_KEY: ${{ secrets.DEEPGRAM_API_KEY }}
+        run: |
+          if [ -z "$DEEPGRAM_API_KEY" ]; then echo "::warning::No DEEPGRAM_API_KEY secret: rendering on estimated timing, no voice"; exit 0; fi
+          node scripts/vo_deepgram.mjs "films/${{ steps.pick.outputs.film }}"
+
+      - name: Save found footage and voice to the repo
+        id: save
+        run: |
+          git config user.name "clip-engine bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add "films/${{ steps.pick.outputs.film }}"
+          if ! git diff --cached --quiet; then
+            git commit -q -m "make: assets and voice for ${{ steps.pick.outputs.film }}"
+            for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 3; done
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Check the rules
+        id: check
+        run: |
+          film="films/${{ steps.pick.outputs.film }}"
+          extra=""; [ "${{ steps.pick.outputs.scale }}" = "0.5" ] && extra="--allow-missing"
+          if node scripts/validate.mjs "$film" $extra > validate.txt; then echo "go=yes" >> "$GITHUB_OUTPUT"; else echo "go=no" >> "$GITHUB_OUTPUT"; fi
+          cat validate.txt
+          {
+            echo "## ${{ steps.pick.outputs.film }}"
+            if grep -q "no asset yet" validate.txt; then
+              echo "### Footage still missing"
+              echo "GitHub could not download these (YouTube and Instagram often block cloud machines). On your laptop run:"
+              echo '```'
+              echo ".\\hunt\\run.ps1 ${{ steps.pick.outputs.film }}"
+              echo '```'
+              echo "It finds the rest, pushes, and this workflow starts again by itself. Or run the workflow with quality = draft to see the video now."
+            fi
+            echo '```'
+            cat validate.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Plan the parallel render
+        id: chunks
+        if: steps.check.outputs.go == 'yes'
+        run: echo "chunks=$(node scripts/plan_chunks.mjs films/${{ steps.pick.outputs.film }})" >> "$GITHUB_OUTPUT"
+
+  render:
+    needs: prepare
+    if: needs.prepare.outputs.go == 'yes'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 18
+      matrix:
+        chunk: ${{ fromJson(needs.prepare.outputs.chunks) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-liberation > /dev/null
+          npm ci --no-audit --no-fund
+      - name: Render frames ${{ matrix.chunk.frames }}
+        run: |
+          export REMOTION_CONCURRENCY=$(nproc)
+          node scripts/render.mjs "films/${{ needs.prepare.outputs.film }}" --frames ${{ matrix.chunk.frames }} \
+            --scale ${{ needs.prepare.outputs.scale }} --chunk 600 --out out/part-${{ matrix.chunk.i }}.mp4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: part-${{ matrix.chunk.i }}
+          path: out/part-${{ matrix.chunk.i }}.mp4
+          retention-days: 1
+
+  finish:
+    needs: [prepare, render]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: part-*
+          path: out/parts
+          merge-multiple: true
+      - name: Join, mix and master
+        run: |
+          film=${{ needs.prepare.outputs.film }}
+          ls out/parts/*.mp4 | sort | sed "s#^#file '$PWD/#; s#\$#'#" > out/list.txt
+          ffmpeg -loglevel error -y -f concat -safe 0 -i out/list.txt -c copy "out/$film.video.mp4"
+          node scripts/mix.mjs "films/$film" --video "out/$film.video.mp4" --out "out/$film.mp4"
+          node scripts/contact_sheet.mjs "out/$film.mp4" --every 4 --cols 6
+          cp "films/$film/credits.md" out/ 2>/dev/null || true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ needs.prepare.outputs.film }}
+          path: |
+            out/${{ needs.prepare.outputs.film }}.mp4
+            out/${{ needs.prepare.outputs.film }}.sheet.jpg
+            out/credits.md
+          retention-days: 14
+      - name: Summary
+        run: |
+          f="out/${{ needs.prepare.outputs.film }}.mp4"
+          d=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$f")
+          echo "### Done: ${{ needs.prepare.outputs.film }}.mp4 ($(du -h "$f" | cut -f1), $(printf '%.0f' "$d") s)" >> "$GITHUB_STEP_SUMMARY"
+          echo "Download it from **Artifacts** at the bottom of this page." >> "$GITHUB_STEP_SUMMARY"

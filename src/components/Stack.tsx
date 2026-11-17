@@ -1,0 +1,102 @@
+import React from 'react';
+import {AbsoluteFill, Img, OffthreadVideo, interpolate, useCurrentFrame, useVideoConfig} from 'remotion';
+import type {Shot} from '../types';
+import {Attribution} from './Attribution';
+
+// The "anti-black-bar" stack. Every asset, whatever its shape (square paleoart, vertical museum
+// photo, 720p documentary rip), fills the 16:9 frame the same way:
+//   V1  the same asset, blown up to fill the frame, blurred and darkened
+//   V2  the asset itself, centred at 90-98 %, with a soft drop shadow
+// Stills never sit still: they scale 90 % -> 98 % or drift 30 px over their whole duration.
+// Clips are punched in 104 % inside their own frame to crop broadcast logos.
+
+const SHADOW = '0 15px 40px rgba(0,0,0,0.6)'; // distance 15, softness 40, opacity 60 %
+
+type Props = {shot: Shot; url: string; variant: number; durationInFrames: number};
+
+export const Stack: React.FC<Props> = ({shot, url, variant, durationInFrames}) => {
+  const frame = useCurrentFrame();
+  const {width, height, fps} = useVideoConfig();
+  const isVideo = shot.kind === 'clip';
+  const p = interpolate(frame, [0, Math.max(1, durationInFrames - 1)], [0, 1], {extrapolateRight: 'clamp'});
+
+  // fit the asset's aspect ratio into the frame
+  const aspect = shot.w && shot.h ? shot.w / shot.h : 16 / 9;
+  const fitW = Math.min(width, height * aspect);
+  const fitH = fitW / aspect;
+
+  // motion: stills zoom 90 -> 98 % (two in three) or drift 30 px at 92 %; clips hold at 92 %
+  let scale = 0.92;
+  let dx = 0;
+  if (!isVideo) {
+    if (variant % 3 === 2) dx = interpolate(p, [0, 1], variant % 2 ? [-15, 15] : [15, -15]);
+    else scale = interpolate(p, [0, 1], [0.9, 0.98]);
+  }
+
+  // slow a clip slightly rather than freeze it when the line runs longer than the clip
+  const clipDur = shot.dur ?? 5;
+  const rate = isVideo ? Math.min(1, clipDur / (durationInFrames / fps)) : 1;
+
+  const media = (style: React.CSSProperties) =>
+    isVideo ? (
+      <OffthreadVideo src={url} muted playbackRate={rate} style={style} />
+    ) : (
+      <Img src={url} style={style} />
+    );
+
+  return (
+    <AbsoluteFill style={{backgroundColor: '#000', overflow: 'hidden'}}>
+      {/* V1: blurred, darkened fill */}
+      <AbsoluteFill style={{transform: 'scale(1.25)'}}>
+        {media({width: '100%', height: '100%', objectFit: 'cover', filter: 'blur(50px) brightness(0.65)'})}
+      </AbsoluteFill>
+
+      {/* V2: the asset */}
+      <AbsoluteFill style={{alignItems: 'center', justifyContent: 'center'}}>
+        <div
+          style={{
+            position: 'relative',
+            width: fitW,
+            height: fitH,
+            transform: `translateX(${dx}px) scale(${scale})`,
+            boxShadow: SHADOW,
+            overflow: 'hidden',
+            backgroundColor: '#000',
+          }}
+        >
+          {media({
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            transform: isVideo ? 'scale(1.04)' : undefined,
+          })}
+          {shot.kind === 'receipt' && shot.highlight ? <Highlighter box={shot.highlight} /> : null}
+        </div>
+      </AbsoluteFill>
+
+      {shot.credit ? <Attribution text={shot.credit} /> : null}
+    </AbsoluteFill>
+  );
+};
+
+// Yellow highlighter on a receipt: multiply blend, 60 % opacity, 0.4 s left-to-right wipe.
+const Highlighter: React.FC<{box: {x: number; y: number; w: number; h: number}}> = ({box}) => {
+  const frame = useCurrentFrame();
+  const {fps} = useVideoConfig();
+  const start = Math.round(0.5 * fps);
+  const wipe = interpolate(frame, [start, start + 0.4 * fps], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        left: `${box.x * 100}%`,
+        top: `${box.y * 100}%`,
+        width: `${box.w * 100 * wipe}%`,
+        height: `${box.h * 100}%`,
+        backgroundColor: '#FFE600',
+        mixBlendMode: 'multiply',
+        opacity: 0.6,
+      }}
+    />
+  );
+};

@@ -1,0 +1,15 @@
+node_modules/
+out/
+.venv/
+__pycache__/
+*.log
+.env
+cookies*.txt
+# render-time copies (the real files live in films/)
+public/films/
+# hunt scratch (full downloads before trimming)
+.hunt-cache/
+# test films (fake assets)
+films/_*/
+# generated sound kit
+sounds/
