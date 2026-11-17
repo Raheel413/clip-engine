@@ -270,7 +270,18 @@
         {
           "kind": "receipt",
           "url": "https://en.wikipedia.org/wiki/Smilodon",
-          "find": "bigger gape than that of modern cats"
+          "find": "bigger gape than that of modern cats",
+          "w": 1760,
+          "h": 1100,
+          "highlight": {
+            "x": 0.23295454545454544,
+            "y": 0.45798295454545457,
+            "w": 0.5334694602272727,
+            "h": 0.08363636363636363
+          },
+          "src": "assets/b16-0.png",
+          "credit": "en.wikipedia.org",
+          "source": "https://en.wikipedia.org/wiki/Smilodon"
         },
         {
           "kind": "image",
