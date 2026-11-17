@@ -31,21 +31,36 @@
       "name": "Dire Wolf",
       "thumb": {
         "kind": "image",
-        "q": "dire wolf paleoart"
+        "q": "dire wolf paleoart",
+        "src": "assets/thumb-0.jpg",
+        "credit": "National Geographic",
+        "source": "https://www.nationalgeographic.com/animals/article/dire-wolf-dna-study-reveals-surprises",
+        "w": 2400,
+        "h": 1643
       }
     },
     {
       "name": "Smilodon",
       "thumb": {
         "kind": "image",
-        "q": "smilodon fatalis paleoart"
+        "q": "smilodon fatalis paleoart",
+        "src": "assets/thumb-1.jpg",
+        "credit": "Pinterest",
+        "source": "https://dk.pinterest.com/pin/699183910945807356/",
+        "w": 736,
+        "h": 1148
       }
     },
     {
       "name": "Short-faced Bear",
       "thumb": {
         "kind": "image",
-        "q": "arctodus short-faced bear paleoart"
+        "q": "arctodus short-faced bear paleoart",
+        "src": "assets/thumb-2.jpg",
+        "credit": "Reddit",
+        "source": "https://www.reddit.com/r/Paleoart/comments/sj2ojz/arctodus_simus_the_north_american_shortfaced_bear/",
+        "w": 1080,
+        "h": 1078
       }
     }
   ],
@@ -56,17 +71,36 @@
       "shots": [
         {
           "kind": "clip",
-          "q": "grizzly bear walking toward camera"
+          "q": "grizzly bear walking toward camera",
+          "src": "assets/b00-0.mp4",
+          "credit": "unilad / TikTok",
+          "source": "https://www.tiktok.com/@unilad/video/7486088974734232854",
+          "w": 576,
+          "h": 1024,
+          "dur": 4.97
         },
         {
           "kind": "clip",
-          "q": "glacier aerial footage"
+          "q": "glacier aerial footage",
+          "src": "assets/b00-1.mp4",
+          "credit": "richardsidey / TikTok",
+          "source": "https://www.tiktok.com/@richardsidey/video/7689202103075540230",
+          "w": 720,
+          "h": 900,
+          "dur": 4.97
         },
         {
           "kind": "image",
-          "q": "ice age north america megafauna paleoart"
+          "q": "ice age north america megafauna paleoart",
+          "src": "assets/b00-2.jpg",
+          "credit": "Reddit",
+          "source": "https://www.reddit.com/r/Naturewasmetal/comments/1f3meau/north_american_megafaunal_biodiversity_during_the/",
+          "w": 2048,
+          "h": 1590
         }
-      ]
+      ],
+      "vo": "vo/b00-1741b3e5.mp3",
+      "vo_dur": 5.664
     },
     {
       "seg": "hook",
@@ -74,19 +108,37 @@
       "shots": [
         {
           "kind": "clip",
-          "q": "ice sheet glacier calving"
+          "q": "ice sheet glacier calving",
+          "src": "assets/b01-0.mp4",
+          "credit": "accuweather / TikTok",
+          "source": "https://www.tiktok.com/@accuweather/video/7681715437033344270",
+          "w": 576,
+          "h": 1024,
+          "dur": 4.97
         },
         {
           "kind": "image",
           "q": "mammoth steppe paleoart",
-          "at": 6
+          "at": 6,
+          "src": "assets/b01-1.jpg",
+          "credit": "Adam _RL",
+          "source": "https://adam_rl.artstation.com/projects/29qzzv",
+          "w": 1920,
+          "h": 1080
         },
         {
           "kind": "image",
           "q": "ice age predators paleoart",
-          "at": 12
+          "at": 12,
+          "src": "assets/b01-2.jpg",
+          "credit": "DeviantArt",
+          "source": "https://www.deviantart.com/sallysue234/art/Prehistoric-Ice-Age-Animals-824643691",
+          "w": 2048,
+          "h": 1536
         }
-      ]
+      ],
+      "vo": "vo/b01-378a9b5a.mp3",
+      "vo_dur": 5.448
     },
     {
       "seg": "hook",
@@ -94,14 +146,27 @@
       "shots": [
         {
           "kind": "image",
-          "q": "short-faced bear arctodus paleoart"
+          "q": "short-faced bear arctodus paleoart",
+          "src": "assets/b02-0.jpg",
+          "credit": "Paleo Media Wiki - Fandom",
+          "source": "https://paleo-media.fandom.com/wiki/Arctodus",
+          "w": 1920,
+          "h": 1012
         },
         {
           "kind": "clip",
           "q": "grizzly bear roaring close up",
-          "at": 7
+          "at": 7,
+          "src": "assets/b02-1.mp4",
+          "credit": "neostoriafam / TikTok",
+          "source": "https://www.tiktok.com/@neostoriafam/video/7706905860290661662",
+          "w": 1920,
+          "h": 1080,
+          "dur": 5
         }
-      ]
+      ],
+      "vo": "vo/b02-1716067e.mp3",
+      "vo_dur": 2.808
     },
     {
       "seg": "hook",
@@ -109,14 +174,28 @@
       "shots": [
         {
           "kind": "clip",
-          "q": "grizzly bears fighting"
+          "q": "grizzly bears fighting",
+          "src": "assets/b03-0.mp4",
+          "credit": "brockrayoutdoors / TikTok",
+          "source": "https://www.tiktok.com/@outdoorsmanbrockray/video/7667035479249833246",
+          "w": 576,
+          "h": 1022,
+          "dur": 5
         },
         {
           "kind": "clip",
           "q": "grizzly bear standing up on hind legs",
-          "at": 4
+          "at": 4,
+          "src": "assets/b03-1.mp4",
+          "credit": "wandercamp / TikTok",
+          "source": "https://www.tiktok.com/@wandercamp/video/7064261732629384495",
+          "w": 338,
+          "h": 590,
+          "dur": 5
         }
-      ]
+      ],
+      "vo": "vo/b03-4c9430ac.mp3",
+      "vo_dur": 3.168
     },
     {
       "seg": "title",
@@ -128,9 +207,16 @@
       "shots": [
         {
           "kind": "image",
-          "q": "dire wolf skeleton museum"
+          "q": "dire wolf skeleton museum",
+          "src": "assets/b05-0.jpg",
+          "credit": "Pinterest",
+          "source": "https://www.pinterest.com/pin/discover-the-ancient-dire-wolves-at-la-brea-tar-pits--157485318207174853/",
+          "w": 736,
+          "h": 552
         }
-      ]
+      ],
+      "vo": "vo/b05-177890ac.mp3",
+      "vo_dur": 6.528
     },
     {
       "seg": "stats",
@@ -157,9 +243,16 @@
         {
           "kind": "image",
           "q": "la brea tar pits dire wolf skull wall",
-          "at": 9
+          "at": 9,
+          "src": "assets/b06-1.jpg",
+          "credit": "La Brea Tar Pits",
+          "source": "https://tarpits.org/stories/dire-wolf-skull-wall-reinstall",
+          "w": 1200,
+          "h": 675
         }
-      ]
+      ],
+      "vo": "vo/b06-c662f2fd.mp3",
+      "vo_dur": 6.168
     },
     {
       "seg": "stats",
@@ -169,9 +262,16 @@
       "shots": [
         {
           "kind": "image",
-          "q": "dire wolf pack paleoart"
+          "q": "dire wolf pack paleoart",
+          "src": "assets/b07-0.jpg",
+          "credit": "Reddit",
+          "source": "https://www.reddit.com/r/pleistocene/comments/1k91nnb/a_dire_wolf_pack_hunting_euceratherium/",
+          "w": 2400,
+          "h": 1745
         }
-      ]
+      ],
+      "vo": "vo/b07-caa35837.mp3",
+      "vo_dur": 4.128
     },
     {
       "seg": "action",
@@ -179,9 +279,17 @@
       "shots": [
         {
           "kind": "clip",
-          "q": "grizzly bear walking slow motion"
+          "q": "grizzly bear walking slow motion",
+          "src": "assets/b08-0.mp4",
+          "credit": "karphotography / TikTok",
+          "source": "https://www.tiktok.com/@karphotography/video/7647272765342453022",
+          "w": 576,
+          "h": 1024,
+          "dur": 5
         }
-      ]
+      ],
+      "vo": "vo/b08-7acd1b9f.mp3",
+      "vo_dur": 4.536
     },
     {
       "seg": "action",
@@ -189,9 +297,17 @@
       "shots": [
         {
           "kind": "clip",
-          "q": "wolf pack running snow"
+          "q": "wolf pack running snow",
+          "src": "assets/b09-0.mp4",
+          "credit": "the...alpha / TikTok",
+          "source": "https://www.tiktok.com/@the...alpha/video/7706700724599590158",
+          "w": 360,
+          "h": 640,
+          "dur": 4.97
         }
-      ]
+      ],
+      "vo": "vo/b09-9618d86c.mp3",
+      "vo_dur": 2.616
     },
     {
       "seg": "action",
@@ -199,14 +315,28 @@
       "shots": [
         {
           "kind": "clip",
-          "q": "wolf pack hunting bison yellowstone"
+          "q": "wolf pack hunting bison yellowstone",
+          "src": "assets/b10-0.mp4",
+          "credit": "accuweather / TikTok",
+          "source": "https://www.tiktok.com/@accuweather/video/7470309655181430062",
+          "w": 576,
+          "h": 1024,
+          "dur": 5
         },
         {
           "kind": "clip",
           "q": "bison running from wolves",
-          "at": 9
+          "at": 9,
+          "src": "assets/b10-1.mp4",
+          "credit": "wildlife288 / TikTok",
+          "source": "https://www.tiktok.com/@wildlife288/video/7308761321061747999",
+          "w": 576,
+          "h": 1024,
+          "dur": 4.97
         }
-      ]
+      ],
+      "vo": "vo/b10-d331082e.mp3",
+      "vo_dur": 6.648
     },
     {
       "seg": "action",
@@ -214,14 +344,28 @@
       "shots": [
         {
           "kind": "clip",
-          "q": "grizzly bear swipe paw"
+          "q": "grizzly bear swipe paw",
+          "src": "assets/b11-0.mp4",
+          "credit": "detroitlions / TikTok",
+          "source": "https://www.tiktok.com/@detroitlions/video/7183798804657851691",
+          "w": 576,
+          "h": 1024,
+          "dur": 4.97
         },
         {
           "kind": "clip",
           "q": "wolves surrounding grizzly bear",
-          "at": 11
+          "at": 11,
+          "src": "assets/b11-1.mp4",
+          "credit": "taylorlrabe / TikTok",
+          "source": "https://www.tiktok.com/@taylorlrabe/video/7659067766271397150",
+          "w": 576,
+          "h": 1024,
+          "dur": 4.97
         }
-      ]
+      ],
+      "vo": "vo/b11-f1d3ed12.mp3",
+      "vo_dur": 5.736
     },
     {
       "seg": "action",
@@ -229,14 +373,28 @@
       "shots": [
         {
           "kind": "clip",
-          "q": "grizzly bear steals wolf kill yellowstone"
+          "q": "grizzly bear steals wolf kill yellowstone",
+          "src": "assets/b12-0.mp4",
+          "credit": "strategist.to.naturalist / TikTok",
+          "source": "https://www.tiktok.com/@strategist.to.naturalist/video/7701684242132127007",
+          "w": 576,
+          "h": 1024,
+          "dur": 4.97
         },
         {
           "kind": "clip",
           "q": "wolves back away from grizzly carcass",
-          "at": 11
+          "at": 11,
+          "src": "assets/b12-1.mp4",
+          "credit": "curiousworld993 / TikTok",
+          "source": "https://www.tiktok.com/@curiousworld993/video/7581793895420415262",
+          "w": 576,
+          "h": 1024,
+          "dur": 4.97
         }
-      ]
+      ],
+      "vo": "vo/b12-c47d2302.mp3",
+      "vo_dur": 5.544
     },
     {
       "seg": "tier",
@@ -244,7 +402,9 @@
       "tier": {
         "item": "Dire Wolf",
         "row": "C"
-      }
+      },
+      "vo": "vo/b13-99841b1d.mp3",
+      "vo_dur": 4.944
     },
     {
       "seg": "title",
@@ -256,14 +416,26 @@
       "shots": [
         {
           "kind": "image",
-          "q": "smilodon fatalis skeleton museum"
+          "q": "smilodon fatalis skeleton museum",
+          "src": "assets/b15-0.jpg",
+          "credit": "Pinterest",
+          "source": "https://www.pinterest.com/pin/smilodon-fatalis-skeleton-at-la-county-museum--12384967723034953/",
+          "w": 522,
+          "h": 662
         },
         {
           "kind": "image",
           "q": "smilodon fatalis paleoart",
-          "at": 9
+          "at": 9,
+          "src": "assets/b15-1.jpg",
+          "credit": "Reddit",
+          "source": "https://www.reddit.com/r/pleistocene/comments/1kyatfm/somewhere_in_late_pleistocene_uruguay_a_smilodon/",
+          "w": 1080,
+          "h": 691
         }
-      ]
+      ],
+      "vo": "vo/b15-fb8d5c28.mp3",
+      "vo_dur": 6.864
     },
     {
       "seg": "stats",
@@ -296,9 +468,16 @@
         {
           "kind": "image",
           "q": "smilodon skull open jaw",
-          "at": 10
+          "at": 10,
+          "src": "assets/b16-1.jpg",
+          "credit": "Pinterest",
+          "source": "https://www.pinterest.com/ideas/Smilodon-skull-wide-gape-canine-anatomy/941197727341/",
+          "w": 1280,
+          "h": 1071
         }
-      ]
+      ],
+      "vo": "vo/b16-58c50652.mp3",
+      "vo_dur": 5.136
     },
     {
       "seg": "stats",
@@ -306,14 +485,26 @@
       "shots": [
         {
           "kind": "image",
-          "q": "smilodon skeleton forelimbs"
+          "q": "smilodon skeleton forelimbs",
+          "src": "assets/b17-0.jpg",
+          "credit": "Bone Clones",
+          "source": "https://boneclones.com/product/sabertooth-cat-smilodon-articulated-skeleton-tarpit-finish-SC-018T-A",
+          "w": 1800,
+          "h": 1800
         },
         {
           "kind": "image",
           "q": "smilodon pinning prey paleoart",
-          "at": 12
+          "at": 12,
+          "src": "assets/b17-1.jpg",
+          "credit": "Reddit",
+          "source": "https://www.reddit.com/r/Naturewasmetal/comments/zt3102/how_smilodon_populator_killed_its_prey/",
+          "w": 940,
+          "h": 1323
         }
-      ]
+      ],
+      "vo": "vo/b17-ec75b5f9.mp3",
+      "vo_dur": 6.576
     },
     {
       "seg": "action",
@@ -323,9 +514,16 @@
       "shots": [
         {
           "kind": "image",
-          "q": "smilodon canine tooth fossil"
+          "q": "smilodon canine tooth fossil",
+          "src": "assets/b18-0.jpg",
+          "credit": "American Museum of Natural History",
+          "source": "https://www.amnh.org/explore/news-blogs/smilodon-teeth-evolution",
+          "w": 1024,
+          "h": 512
         }
-      ]
+      ],
+      "vo": "vo/b18-5721569c.mp3",
+      "vo_dur": 4.104
     },
     {
       "seg": "action",
@@ -333,9 +531,17 @@
       "shots": [
         {
           "kind": "clip",
-          "q": "lion pins buffalo"
+          "q": "lion pins buffalo",
+          "src": "assets/b19-0.mp4",
+          "credit": "wildclashtv404 / TikTok",
+          "source": "https://www.tiktok.com/@wildclashtv404/video/7696201651367054606",
+          "w": 576,
+          "h": 1024,
+          "dur": 4.97
         }
-      ]
+      ],
+      "vo": "vo/b19-deb669db.mp3",
+      "vo_dur": 4.656
     },
     {
       "seg": "action",
@@ -343,14 +549,28 @@
       "shots": [
         {
           "kind": "clip",
-          "q": "grizzly bear digging"
+          "q": "grizzly bear digging",
+          "src": "assets/b20-0.mp4",
+          "credit": "banfftrailrunner / TikTok",
+          "source": "https://www.tiktok.com/@banfftrailrunner/video/7502829320033946902",
+          "w": 576,
+          "h": 1024,
+          "dur": 5
         },
         {
           "kind": "clip",
           "q": "grizzly bear hump shoulders close",
-          "at": 7
+          "at": 7,
+          "src": "assets/b20-1.mp4",
+          "credit": "wildfactsdaily533 / TikTok",
+          "source": "https://www.tiktok.com/@wildfactsdaily533/video/7706952602797231390",
+          "w": 576,
+          "h": 1024,
+          "dur": 4.97
         }
-      ]
+      ],
+      "vo": "vo/b20-63db9da3.mp3",
+      "vo_dur": 6.024
     },
     {
       "seg": "action",
@@ -358,9 +578,17 @@
       "shots": [
         {
           "kind": "clip",
-          "q": "siberian tiger snow"
+          "q": "siberian tiger snow",
+          "src": "assets/b21-0.mp4",
+          "credit": "myrescutails / TikTok",
+          "source": "https://www.tiktok.com/@myrescutails/video/7707044667875118350",
+          "w": 576,
+          "h": 1024,
+          "dur": 4.47
         }
-      ]
+      ],
+      "vo": "vo/b21-395f5f0b.mp3",
+      "vo_dur": 3.888
     },
     {
       "seg": "action",
@@ -368,14 +596,27 @@
       "shots": [
         {
           "kind": "image",
-          "q": "smilodon attack paleoart"
+          "q": "smilodon attack paleoart",
+          "src": "assets/b22-0.jpg",
+          "credit": "Science Photo Library",
+          "source": "https://www.sciencephoto.com/media/112284/view/smilodon-attacking-sloth",
+          "w": 800,
+          "h": 612
         },
         {
           "kind": "clip",
           "q": "grizzly bear charging",
-          "at": 10
+          "at": 10,
+          "src": "assets/b22-1.mp4",
+          "credit": "tvashleigh / TikTok",
+          "source": "https://www.tiktok.com/@tvashleigh/video/7653836770609515807",
+          "w": 576,
+          "h": 1024,
+          "dur": 5
         }
-      ]
+      ],
+      "vo": "vo/b22-67888f60.mp3",
+      "vo_dur": 5.976
     },
     {
       "seg": "tier",
@@ -383,7 +624,9 @@
       "tier": {
         "item": "Smilodon",
         "row": "A"
-      }
+      },
+      "vo": "vo/b23-7b81a53f.mp3",
+      "vo_dur": 5.304
     },
     {
       "seg": "title",
@@ -395,9 +638,16 @@
       "shots": [
         {
           "kind": "image",
-          "q": "arctodus simus skeleton museum"
+          "q": "arctodus simus skeleton museum",
+          "src": "assets/b25-0.jpg",
+          "credit": "Wikipedia",
+          "source": "https://en.wikipedia.org/wiki/Arctodus",
+          "w": 1280,
+          "h": 1192
         }
-      ]
+      ],
+      "vo": "vo/b25-f07a579d.mp3",
+      "vo_dur": 5.928
     },
     {
       "seg": "stats",
@@ -405,14 +655,27 @@
       "shots": [
         {
           "kind": "image",
-          "q": "arctodus skeleton standing"
+          "q": "arctodus skeleton standing",
+          "src": "assets/b26-0.jpg",
+          "credit": "Pinterest",
+          "source": "https://www.pinterest.com/pin/shortfaced-bear-articulated-upright-skeleton-bone-clones-inc--130674826666365208/",
+          "w": 650,
+          "h": 900
         },
         {
           "kind": "clip",
           "q": "grizzly bear standing tall",
-          "at": 10
+          "at": 10,
+          "src": "assets/b26-1.mp4",
+          "credit": "huntingclipss / TikTok",
+          "source": "https://www.tiktok.com/@huntingclipss/video/7541443322317966622",
+          "w": 576,
+          "h": 1024,
+          "dur": 4.97
         }
-      ]
+      ],
+      "vo": "vo/b26-288167e6.mp3",
+      "vo_dur": 5.064
     },
     {
       "seg": "stats",
@@ -441,9 +704,16 @@
         {
           "kind": "image",
           "q": "arctodus paleoart",
-          "at": 12
+          "at": 12,
+          "src": "assets/b27-1.jpg",
+          "credit": "Pinterest",
+          "source": "https://www.pinterest.com/pin/43065740175111262/",
+          "w": 735,
+          "h": 736
         }
-      ]
+      ],
+      "vo": "vo/b27-d780c617.mp3",
+      "vo_dur": 6.744
     },
     {
       "seg": "action",
@@ -451,14 +721,26 @@
       "shots": [
         {
           "kind": "image",
-          "q": "short-faced bear paleoart scavenging"
+          "q": "short-faced bear paleoart scavenging",
+          "src": "assets/b28-0.jpg",
+          "credit": "Reddit",
+          "source": "https://www.reddit.com/r/Naturewasmetal/comments/sx307t/shortfaced_bear_infographic_created_by_beth/",
+          "w": 1240,
+          "h": 1603
         },
         {
           "kind": "image",
           "q": "smilodon kill paleoart",
-          "at": 10
+          "at": 10,
+          "src": "assets/b28-1.jpg",
+          "credit": "Reddit",
+          "source": "https://www.reddit.com/r/Paleoart/comments/1lo06gz/smilodon_populator_and_a_young_platygonus_kill/",
+          "w": 2359,
+          "h": 921
         }
-      ]
+      ],
+      "vo": "vo/b28-08f61bb1.mp3",
+      "vo_dur": 6.024
     },
     {
       "seg": "action",
@@ -466,9 +748,17 @@
       "shots": [
         {
           "kind": "clip",
-          "q": "grizzly bear eating carcass wolves waiting"
+          "q": "grizzly bear eating carcass wolves waiting",
+          "src": "assets/b29-0.mp4",
+          "credit": "taylorlrabe / TikTok",
+          "source": "https://www.tiktok.com/@taylorlrabe/video/7535254258518740254",
+          "w": 576,
+          "h": 1024,
+          "dur": 4.97
         }
-      ]
+      ],
+      "vo": "vo/b29-7a1d4030.mp3",
+      "vo_dur": 4.416
     },
     {
       "seg": "action",
@@ -476,14 +766,28 @@
       "shots": [
         {
           "kind": "clip",
-          "q": "grizzly bears fighting river"
+          "q": "grizzly bears fighting river",
+          "src": "assets/b30-0.mp4",
+          "credit": "bradjosephs / TikTok",
+          "source": "https://www.tiktok.com/@bradjosephs/video/7333319552979225898",
+          "w": 576,
+          "h": 1024,
+          "dur": 4.97
         },
         {
           "kind": "clip",
           "q": "brown bears fighting katmai",
-          "at": 12
+          "at": 12,
+          "src": "assets/b30-1.mp4",
+          "credit": "outsidemagazine / TikTok",
+          "source": "https://www.tiktok.com/@outsidemagazine/video/7560054773697776951",
+          "w": 576,
+          "h": 1024,
+          "dur": 4.97
         }
-      ]
+      ],
+      "vo": "vo/b30-f8b06ed1.mp3",
+      "vo_dur": 7.416
     },
     {
       "seg": "action",
@@ -491,9 +795,17 @@
       "shots": [
         {
           "kind": "clip",
-          "q": "grizzly bear close up"
+          "q": "grizzly bear close up",
+          "src": "assets/b31-0.mp4",
+          "credit": "livebylight / TikTok",
+          "source": "https://www.tiktok.com/@livebylight/video/7660730125683592455",
+          "w": 576,
+          "h": 1024,
+          "dur": 5
         }
-      ]
+      ],
+      "vo": "vo/b31-79bfd976.mp3",
+      "vo_dur": 3.744
     },
     {
       "seg": "action",
@@ -501,14 +813,28 @@
       "shots": [
         {
           "kind": "clip",
-          "q": "bear standoff river"
+          "q": "bear standoff river",
+          "src": "assets/b32-0.mp4",
+          "credit": "plutosdestiny / TikTok",
+          "source": "https://www.tiktok.com/@plutosdestiny/video/7703738432547245345",
+          "w": 720,
+          "h": 720,
+          "dur": 5
         },
         {
           "kind": "clip",
           "q": "bear backs away from bigger bear",
-          "at": 8
+          "at": 8,
+          "src": "assets/b32-1.mp4",
+          "credit": "susankehoe1 / TikTok",
+          "source": "https://www.tiktok.com/@susankehoe1/video/7564213043186421005",
+          "w": 576,
+          "h": 1024,
+          "dur": 5
         }
-      ]
+      ],
+      "vo": "vo/b32-11679adf.mp3",
+      "vo_dur": 4.776
     },
     {
       "seg": "tier",
@@ -516,7 +842,9 @@
       "tier": {
         "item": "Short-faced Bear",
         "row": "S"
-      }
+      },
+      "vo": "vo/b33-6dfad42d.mp3",
+      "vo_dur": 4.296
     },
     {
       "seg": "wheel",
@@ -531,7 +859,9 @@
           "Megalania"
         ],
         "pick": "Cave Lion"
-      }
+      },
+      "vo": "vo/b34-647609a9.mp3",
+      "vo_dur": 2.616
     },
     {
       "seg": "outro",
@@ -539,9 +869,16 @@
       "shots": [
         {
           "kind": "image",
-          "q": "cave lion paleoart"
+          "q": "cave lion paleoart",
+          "src": "assets/b35-0.jpg",
+          "credit": "The Extinctions",
+          "source": "https://www.theextinctions.com/panthera-spelaea",
+          "w": 2400,
+          "h": 1193
         }
-      ]
+      ],
+      "vo": "vo/b35-931399a8.mp3",
+      "vo_dur": 3.264
     }
   ]
 }
