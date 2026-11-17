@@ -2,12 +2,14 @@
 #   .\hunt\run.ps1 grizzly-test                 search and download everything still missing
 #   .\hunt\run.ps1 grizzly-test -Browser firefox  use your Firefox login (needed for Instagram)
 #   .\hunt\run.ps1 grizzly-test -Redo b05-0,b07-1 throw away those shots and find new ones
-# Needs: Python 3.10+, ffmpeg and git on PATH. Keys go in a .env file in the repo folder.
+#   .\hunt\run.ps1 grizzly-test -Landscape      swap vertical TikTok clips for landscape ones (YouTube works from home)
+# Needs: Python 3.10+, ffmpeg, git and Tesseract OCR on PATH (winget install UB-Mannheim.TesseractOCR). Keys go in a .env file in the repo folder.
 param(
   [Parameter(Mandatory = $true)][string]$Film,
   [string]$Browser = "",
   [string]$Redo = "",
   [switch]$NoVision,
+  [switch]$Landscape,   # replace vertical (TikTok-style) clips with landscape ones; YouTube works from your laptop
   [switch]$NoPush
 )
 $ErrorActionPreference = "Stop"
@@ -22,6 +24,8 @@ $a = @("hunt\hunt.py", "films\$Film")
 if ($Browser) { $a += @("--browser", $Browser) }
 if ($Redo) { $a += @("--redo", $Redo) }
 if ($NoVision) { $a += "--no-vision" }
+$a += "--recheck"
+if ($Landscape) { $a += "--landscape" }
 .\.venv\Scripts\python.exe @a
 
 if (-not $NoPush) {

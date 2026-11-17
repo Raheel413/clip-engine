@@ -42,7 +42,7 @@ UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.3
 ROOT = Path(__file__).resolve().parent.parent
 CACHE = ROOT / ".hunt-cache"
 
-CLIP_SOURCES = ["youtube", "tiktok", "instagram", "web"]
+CLIP_SOURCES = ["youtube", "vimeo", "dailymotion", "web", "tiktok", "instagram"]
 IMAGE_SOURCES = ["web", "commons", "pinterest"]
 
 
@@ -114,6 +114,10 @@ def video_candidates(q, sources):
             lists.append([v["link"] for v in serper("videos", f"{q} site:instagram.com") if "instagram.com" in v.get("link", "")])
         elif s == "pinterest":
             lists.append([v["link"] for v in serper("videos", f"{q} site:pinterest.com") if "pinterest." in v.get("link", "")])
+        elif s == "vimeo":
+            lists.append([v["link"] for v in serper("videos", f"{q} site:vimeo.com") if "vimeo.com" in v.get("link", "")])
+        elif s == "dailymotion":
+            lists.append([v["link"] for v in serper("videos", f"{q} site:dailymotion.com") if "dailymotion.com" in v.get("link", "")])
         elif s == "web":
             lists.append([v["link"] for v in serper("videos", q) if v.get("link")])
     # interleave so one blocked site doesn't use up every try
@@ -197,7 +201,7 @@ def site_name(info):
     return f"{who} / {site}" if who else site
 
 
-def fetch_window(url, args, tag):
+def fetch_window(url, args, tag, landscape_only=False):
     """Download up to WINDOW seconds of a video. Returns (path, info) or (None, reason)."""
     import yt_dlp
     from yt_dlp.utils import download_range_func
@@ -213,6 +217,9 @@ def fetch_window(url, args, tag):
             return None, "empty playlist"
         info = entries[0]
     dur = info.get("duration") or 0
+    iw, ih = info.get("width") or 0, info.get("height") or 0
+    if landscape_only and iw and ih and iw < ih * 1.2:
+        return None, "vertical"
     if dur and dur < 2:
         return None, "too short"
     if dur and dur > 4 * 3600:
@@ -278,6 +285,53 @@ def frame_jpeg(path, t):
     return r.stdout
 
 
+# ---------------------------------------------------------------- free checks: burned-in text, orientation
+
+def ocr_words(png):
+    """Words tesseract reads with confidence >= 70 (3+ letters or digits)."""
+    if not shutil.which("tesseract"):
+        return []
+    r = subprocess.run(["tesseract", str(png), "-", "--psm", "11", "tsv"], capture_output=True, text=True)
+    out = []
+    for line in r.stdout.splitlines()[1:]:
+        p = line.split("\t")
+        if len(p) < 12:
+            continue
+        try:
+            conf = float(p[10])
+        except ValueError:
+            continue
+        if conf >= 70 and len(re.sub(r"[^A-Za-z0-9]", "", p[11])) >= 3:
+            out.append(p[11])
+    return out
+
+
+def clip_has_text(path, start, take):
+    """True when captions, subtitles or meme text are burned into the clip."""
+    if not shutil.which("tesseract"):
+        return False, []
+    png = CACHE / "_ocr.png"
+    for t in (start + 0.3, start + take / 2, start + max(0.3, take - 0.3)):
+        subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-ss", f"{t:.2f}", "-i", str(path), "-frames:v", "1",
+                        "-vf", "scale='if(lt(iw,1500),iw*2,iw)':-2", str(png)])
+        w = ocr_words(png)
+        if len(w) >= 2:
+            return True, w
+    return False, []
+
+
+def image_has_text(img):
+    if not shutil.which("tesseract"):
+        return False, []
+    png = CACHE / "_ocr.png"
+    im = img.copy()
+    if im.size[0] < 1500:
+        im = im.resize((im.size[0] * 2, im.size[1] * 2))
+    im.save(png)
+    w = ocr_words(png)
+    return len(w) >= 8, w
+
+
 # ---------------------------------------------------------------- vision check
 
 def vision_ok(jpeg_bytes, q, line, args):
@@ -316,44 +370,58 @@ def vision_ok(jpeg_bytes, q, line, args):
 # ---------------------------------------------------------------- per shot
 
 def hunt_clip(shot, sid, line, film_dir, used, args):
+    """Two passes: first only landscape clips (they fill a 16:9 frame), then anything."""
     if shot.get("url"):
         cands = [shot["url"]]
     else:
         cands = video_candidates(shot["q"], shot.get("from") or CLIP_SOURCES)
-    tries = 0
-    for url in cands:
-        if url in used:
-            continue
-        if tries >= MAX_TRIES:
-            break
-        tries += 1
-        log(f"    try {url}")
-        path, info = fetch_window(url, args, f"{sid}-{tries}")
-        if not path:
-            log(f"      skip: {info}")
-            continue
-        w, h, length = probe(path)
-        if h < 360 or length < MIN_CLIP:
-            log(f"      skip: {w}x{h}, {length:.1f}s")
-            continue
-        start, take = best_segment(path, length)
-        if take < MIN_CLIP and length >= MIN_CLIP:
-            start, take = 0.0, min(length, MAX_CLIP)  # choppy source: just take the opening
-        ok, why = vision_ok(frame_jpeg(path, start + take / 2), shot["q"], line, args)
-        if not ok:
-            log(f"      rejected by vision check: {why}")
-            continue
-        out = film_dir / "assets" / f"{sid}.mp4"
-        out.parent.mkdir(exist_ok=True)
-        cut_clip(path, start, take, out)
-        w2, h2, d2 = probe(out)
-        page = info.get("webpage_url") or url
-        used.add(url)
-        used.add(page)
-        shot.update({"src": f"assets/{sid}.mp4", "credit": site_name(info), "source": page, "w": w2, "h": h2,
-                     "dur": round(min(d2, MAX_CLIP), 2)})
-        log(f"      got {take:.1f}s at {start:.1f}s  ({site_name(info)})")
-        return True
+    tried = set()
+    for landscape_only in (True, False):
+        tries = 0
+        for url in cands:
+            if url in used or url in tried:
+                continue
+            if tries >= MAX_TRIES:
+                break
+            tries += 1
+            log(f"    try {url}{'' if landscape_only else '  (vertical allowed)'}")
+            path, info = fetch_window(url, args, f"{sid}-{len(tried)}", landscape_only)
+            if not path:
+                log(f"      skip: {info}")
+                if info != "vertical":
+                    tried.add(url)
+                continue
+            tried.add(url)
+            w, h, length = probe(path)
+            if h < 360 or length < MIN_CLIP:
+                log(f"      skip: {w}x{h}, {length:.1f}s")
+                continue
+            if landscape_only and w < h * 1.2:
+                log(f"      skip: vertical {w}x{h} (looking for landscape first)")
+                tried.discard(url)
+                continue
+            start, take = best_segment(path, length)
+            if take < MIN_CLIP and length >= MIN_CLIP:
+                start, take = 0.0, min(length, MAX_CLIP)  # choppy source: just take the opening
+            texty, words = clip_has_text(path, start, take)
+            if texty:
+                log(f"      skip: text on screen ({' '.join(words[:6])})")
+                continue
+            ok, why = vision_ok(frame_jpeg(path, start + take / 2), shot["q"], line, args)
+            if not ok:
+                log(f"      rejected by vision check: {why}")
+                continue
+            out = film_dir / "assets" / f"{sid}.mp4"
+            out.parent.mkdir(exist_ok=True)
+            cut_clip(path, start, take, out)
+            w2, h2, d2 = probe(out)
+            page = info.get("webpage_url") or url
+            used.add(url)
+            used.add(page)
+            shot.update({"src": f"assets/{sid}.mp4", "credit": site_name(info), "source": page, "w": w2, "h": h2,
+                         "dur": round(min(d2, MAX_CLIP), 2)})
+            log(f"      got {take:.1f}s at {start:.1f}s, {w2}x{h2}  ({site_name(info)})")
+            return True
     return False
 
 
@@ -384,6 +452,10 @@ def hunt_image(shot, sid, line, film_dir, used, args):
         if min(w, h) < 500 or not (0.4 <= w / h <= 3.0):
             log(f"    skip image {w}x{h}")
             continue
+        texty, words = image_has_text(img)
+        if texty:
+            log(f"    skip image: text-heavy ({' '.join(words[:6])})")
+            continue
         buf = io.BytesIO()
         small = img.copy()
         small.thumbnail((768, 768))
@@ -411,6 +483,8 @@ def main():
     ap.add_argument("--browser", default="", help="read login cookies from this browser (firefox recommended)")
     ap.add_argument("--no-vision", action="store_true", help="skip the Claude vision check")
     ap.add_argument("--redo", default="", help="comma-separated shot ids to hunt again, e.g. b05-0,thumb-1")
+    ap.add_argument("--recheck", action="store_true", help="re-test found clips and images for burned-in text and replace the ones that fail")
+    ap.add_argument("--landscape", action="store_true", help="with --recheck: also replace vertical clips (use on your laptop, where YouTube works)")
     ap.add_argument("--sources", default="", help="override sources for every clip, e.g. tiktok,instagram")
     args = ap.parse_args()
 
@@ -436,10 +510,40 @@ def main():
                 jobs.append((f"b{bi:02d}-{si}", s, b.get("text", "")))
 
     used = {s.get("source") for _, s, _ in jobs if s.get("source")}
-    for sid in redo:
+    rejected = film.setdefault("rejected", [])
+    used.update(rejected)
+
+    checked = set()
+    if args.recheck:
+        from PIL import Image
+        for sid, s, _ in jobs:
+            src = film_dir / s["src"] if s.get("src") else None
+            if not src or not src.exists():
+                continue
+            bad = ""
+            if s["kind"] == "clip":
+                texty, words = clip_has_text(src, 0, s.get("dur") or MAX_CLIP)
+                if texty:
+                    bad = f"text on screen ({' '.join(words[:5])})"
+                elif args.landscape and (s.get("w") or 1) < (s.get("h") or 0):
+                    bad = "vertical"
+            elif s["kind"] == "image":
+                texty, words = image_has_text(Image.open(src).convert("RGB"))
+                if texty:
+                    bad = f"text-heavy ({' '.join(words[:5])})"
+            if bad:
+                log(f"recheck {sid}: {bad}, finding a new one")
+                if s.get("source"):
+                    rejected.append(s["source"])
+                    used.add(s["source"])
+                checked.add(sid)
+    for sid in redo | checked:
         for jid, s, _ in jobs:
             if jid == sid:
-                used.discard(s.get("source"))
+                if s.get("source") and sid in redo:
+                    rejected.append(s["source"])  # never pick the thing you threw away again
+                if s.get("src") and (film_dir / s["src"]).exists():
+                    (film_dir / s["src"]).unlink()
                 for key in ("src", "credit", "source", "w", "h", "dur"):
                     s.pop(key, None)
 
@@ -462,6 +566,8 @@ def main():
             log("    NOT FOUND")
         time.sleep(0.3)
 
+    film["rejected"] = sorted(set(rejected))
+    film_path.write_text(json.dumps(film, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     missing = [(sid, s) for sid, s, _ in jobs if not s.get("src")]
     lines = ["# Credits", "", "| Shot | Credit | Source |", "|---|---|---|"]
     lines += [f"| {sid} | {s.get('credit', '')} | {s.get('source', '')} |" for sid, s, _ in jobs if s.get("src")]

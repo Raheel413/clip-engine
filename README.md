@@ -17,7 +17,7 @@ Turns a script into a finished animal "versus" documentary: clips downloaded fro
 
 YouTube, Instagram and often TikTok block downloads from GitHub's machines. Your laptop gets through.
 
-1. Install Python 3.12, Git and ffmpeg: `winget install Python.Python.3.12 Git.Git Gyan.FFmpeg`
+1. Install Python 3.12, Git, ffmpeg and Tesseract (it spots captions burned into clips): `winget install Python.Python.3.12 Git.Git Gyan.FFmpeg UB-Mannheim.TesseractOCR`, then add `C:\Program Files\Tesseract-OCR` to your PATH
 2. `git clone https://github.com/Raheel413/clip-engine` and open the folder.
 3. Make a file called `.env` in that folder (it never gets uploaded):
    ```
@@ -36,6 +36,7 @@ YouTube, Instagram and often TikTok block downloads from GitHub's machines. Your
    .\hunt\run.ps1 <name>                     # find the rest and push
    .\hunt\run.ps1 <name> -Browser firefox    # same, with your Instagram login
    .\hunt\run.ps1 <name> -Redo b05-0,b07-1   # replace shots you don't like (ids are in credits.md)
+   .\hunt\run.ps1 <name> -Landscape          # swap vertical TikTok clips for landscape YouTube ones
    ```
    The push starts the render again by itself.
 4. Download the MP4, a contact sheet and `credits.md` from **Artifacts** at the bottom of the run page.
@@ -59,7 +60,7 @@ Drop 2-4 dark ambient tracks into `music/` (or `films/<name>/music/` for one vid
 | TierMaker drag with visible cursor, 0.5 s pause, cut | `src/components/TierBoard.tsx` |
 | Wheel of Names with peg ticks, sped up | `src/components/Wheel.tsx` |
 | Voice: 3:1 compression, de-ess, +120 Hz, +4 kHz, -14 LUFS. Music low-passed at about -30, +4 dB swell at dips. Boom -12 dB, whooshes -18 dB | `scripts/mix.mjs`, `scripts/make_sounds.mjs` |
-| Clips 5 s or less, each source used once | `hunt/hunt.py`, `scripts/validate.mjs` |
+| Clips 5 s or less, each source used once, landscape first, clips and images with burned-in captions rejected (OCR) | `hunt/hunt.py`, `scripts/validate.mjs` |
 
 ## Local commands
 

@@ -75,7 +75,7 @@ jobs:
       - name: Install tools
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y -qq ffmpeg poppler-utils fonts-liberation > /dev/null
+          sudo apt-get install -y -qq ffmpeg poppler-utils fonts-liberation tesseract-ocr > /dev/null
           npm ci --no-audit --no-fund
           pip install -q -r hunt/requirements.txt
 
@@ -86,7 +86,7 @@ jobs:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
           SERPER_API_KEY: ${{ secrets.SERPER_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python hunt/hunt.py "films/${{ steps.pick.outputs.film }}"
+        run: python hunt/hunt.py "films/${{ steps.pick.outputs.film }}" --recheck
 
       - name: Receipts (page screenshots)
         continue-on-error: true
