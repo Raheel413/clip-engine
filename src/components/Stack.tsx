@@ -19,6 +19,10 @@ export const Stack: React.FC<Props> = ({shot, url, variant, durationInFrames}) =
   const frame = useCurrentFrame();
   const {width, height, fps} = useVideoConfig();
   const isVideo = shot.kind === 'clip';
+  const aspect0 = shot.w && shot.h ? shot.w / shot.h : 16 / 9;
+  // Landscape documentary B-roll fills the whole frame, punched in 104 % to crop broadcast logos.
+  // Everything else (stills, square or vertical clips) goes in the blurred stack.
+  const fullFrame = isVideo && aspect0 >= 1.55;
   const p = interpolate(frame, [0, Math.max(1, durationInFrames - 1)], [0, 1], {extrapolateRight: 'clamp'});
 
   // fit the asset's aspect ratio into the frame
@@ -43,6 +47,15 @@ export const Stack: React.FC<Props> = ({shot, url, variant, durationInFrames}) =
       <OffthreadVideo src={url} muted playbackRate={rate} style={style} />
     ) : (
       <Img src={url} style={style} />
+    );
+
+  if (fullFrame)
+    return (
+      <AbsoluteFill style={{backgroundColor: '#000', overflow: 'hidden'}}>
+        {media({width: '100%', height: '100%', objectFit: 'cover', transform: 'scale(1.04)'})}
+        {shot.label ? <StatLabel text={shot.label} /> : null}
+        {shot.credit ? <Attribution text={shot.credit} /> : null}
+      </AbsoluteFill>
     );
 
   return (
@@ -79,7 +92,23 @@ export const Stack: React.FC<Props> = ({shot, url, variant, durationInFrames}) =
         </div>
       </AbsoluteFill>
 
+      {shot.label ? <StatLabel text={shot.label} /> : null}
       {shot.credit ? <Attribution text={shot.credit} /> : null}
+    </AbsoluteFill>
+  );
+};
+
+// Big stat text over a picture ("3.7 - 4 Meters / 40 KG"): Anton, white, black outline, 0.3 s dissolve.
+const StatLabel: React.FC<{text: string}> = ({text}) => {
+  const frame = useCurrentFrame();
+  const {fps} = useVideoConfig();
+  const opacity = interpolate(frame, [0.2 * fps, 0.5 * fps], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  return (
+    <AbsoluteFill style={{alignItems: 'center', justifyContent: 'flex-end', paddingBottom: 170, opacity}}>
+      <div style={{fontFamily: 'Anton, Impact, sans-serif', fontSize: 92, lineHeight: 1.05, color: '#fff', textAlign: 'center',
+        whiteSpace: 'pre-line', WebkitTextStroke: '12px #000', paintOrder: 'stroke fill', textShadow: '0 8px 24px rgba(0,0,0,0.6)'}}>
+        {text}
+      </div>
     </AbsoluteFill>
   );
 };

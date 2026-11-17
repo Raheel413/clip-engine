@@ -78,7 +78,8 @@ export const TierBoard: React.FC<Props> = ({film, rows, title, placed, pool, dro
       {src ? (
         <Img src={url(src)!} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
       ) : (
-        <div style={{color: '#fff', fontFamily: 'Arial, sans-serif', fontSize: 18, padding: 8, textAlign: 'center'}}>{name}</div>
+        <div style={{color: '#fff', backgroundColor: name === '?' ? '#000' : undefined, width: '100%', height: '100%', display: 'flex', alignItems: 'center',
+          justifyContent: 'center', fontFamily: 'Arial, sans-serif', fontWeight: 700, fontSize: name === '?' ? 80 : 18, padding: 8, boxSizing: 'border-box', textAlign: 'center'}}>{name}</div>
       )}
     </div>
   );
@@ -114,7 +115,8 @@ export const TierBoard: React.FC<Props> = ({film, rows, title, placed, pool, dro
               alignItems: 'center',
               justifyContent: 'center',
               fontFamily: 'Arial, Helvetica, sans-serif',
-              fontSize: r.label.length > 3 ? 26 : 44,
+              fontSize: r.label.length > 12 ? 22 : r.label.length > 3 ? 26 : 44,
+              lineHeight: 1.1,
               color: '#000',
               textAlign: 'center',
               padding: 6,

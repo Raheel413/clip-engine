@@ -103,8 +103,15 @@ def serper(endpoint, q, n=10):
         return []
 
 
+DOCS = []  # documentaries to search first (film.json "doc_sources")
+
+
 def video_candidates(q, sources):
     lists = []
+    # premium documentary footage first: "<query> Prehistoric Planet", "<query> Walking with Beasts", ...
+    if "youtube" in sources:
+        for d in DOCS[:3]:
+            lists.append(youtube_search(f"{q} {d}", n=5))
     for s in sources:
         if s == "youtube":
             lists.append(youtube_search(q))
@@ -226,7 +233,7 @@ def fetch_window(url, args, tag, landscape_only=False):
         return None, "too long"
 
     opts = ydl_opts(args, str(CACHE / f"{tag}.%(ext)s"))
-    opts["format"] = "bv*[height<=1080][height>=360]/b[height<=1080][height>=360]/bv*/b"
+    opts["format"] = "bv*[height<=1080][height>=720]/bv*[height<=1080][height>=480]/b[height<=1080][height>=480]/bv*/b"
     if dur > WINDOW + 10:
         # pick a window away from intros and outros; the shot id decides where, so reruns are stable
         frac = 0.15 + (int(hashlib.md5(tag.encode()).hexdigest(), 16) % 600) / 1000  # 0.15 .. 0.75
@@ -396,8 +403,8 @@ def hunt_clip(shot, sid, line, film_dir, used, args):
             if min(w, h) < 480 or length < MIN_CLIP:  # too small to hold up in a 1080p video
                 log(f"      skip: {w}x{h}, {length:.1f}s")
                 continue
-            if landscape_only and w < h * 1.2:
-                log(f"      skip: vertical {w}x{h} (looking for landscape first)")
+            if landscape_only and (w < h * 1.2 or h < 700):
+                log(f"      skip: {w}x{h} (looking for landscape HD first)")
                 tried.discard(url)
                 continue
             start, take = best_segment(path, length)
@@ -494,6 +501,7 @@ def main():
     film_dir = Path(args.film).resolve()
     film_path = film_dir / "film.json"
     film = json.loads(film_path.read_text(encoding="utf-8"))
+    DOCS[:] = film.get("doc_sources", [])
     CACHE.mkdir(exist_ok=True)
     redo = {s.strip() for s in args.redo.split(",") if s.strip()}
     if not (os.environ.get("YOUTUBE_API_KEY") or os.environ.get("SERPER_API_KEY")):

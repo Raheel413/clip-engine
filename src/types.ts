@@ -5,6 +5,7 @@ export type Shot = {
   at?: number;             // word index in the line where this shot starts
   url?: string;            // receipts: page or PDF to screenshot; or a direct link to use as-is
   find?: string;           // receipts: the words to highlight
+  label?: string;          // big stat text over the picture, e.g. "3.7 - 4 Meters\n40 KG"
   page?: number;           // receipts: PDF page
   // filled by the hunter / receipts script
   src?: string;            // file inside the film folder, e.g. assets/b03-0.mp4
@@ -36,6 +37,9 @@ export type Film = {
   voice?: string;
   hero?: string;
   tier_title?: string;
+  tier_extra?: string[];   // extra tiles waiting in the pool, e.g. ["?"] for the mystery round
+  title_style?: 'caps' | 'plain'; // caps = ALL CAPS with thick outline; plain = as written, soft shadow (Fossil look)
+  doc_sources?: string[];  // documentaries to search first for clips, e.g. ["Prehistoric Planet Ice Age", "Walking with Beasts"]
   tiers?: {label: string; color: string}[];
   opponents?: {name: string; thumb?: Shot}[];
   beats: Beat[];

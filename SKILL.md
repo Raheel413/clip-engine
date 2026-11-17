@@ -21,6 +21,18 @@ One famous modern animal (the hero) against a run of opponents from one era. Eac
 
 Full videos: 11-13 opponents for 16-19 minutes. Tests: 3 opponents.
 
+## 1b. The quality bar: Fossil (@FossilVideos)
+
+Studied frame by frame ("Could a Polar Bear Beat Every Ice Age Predator?", 2.9M views):
+- **Clips are premium documentary footage**: Prehistoric Planet: Ice Age, Walking with Beasts, BBC (Frozen Planet, Planet Earth). Landscape, HD, full frame, tiny credit bottom-left. No TikTok-style vertical clips. Set `doc_sources` and the hunter searches those first (YouTube, so run the hunt on the laptop).
+- **Hook**: 20 s of full-frame documentary shots cut every 1-2 s, extreme close-ups of the hero's face first.
+- **Stills** (paleoart, skulls, museum mounts, fossil diagrams) sit centred on a dark blurred fill.
+- **Title cards**: the animal's name in Anton, as written (not all caps), white-to-grey, soft shadow, over the blurred animal. `"title_style": "plain"`.
+- **Stat labels** over pictures: "3.7 - 4 Meters / 40 KG". Use `label` on the shot.
+- **Size charts**: silhouette comparisons (hero vs human vs opponent). Search "<animal> size comparison chart".
+- **Receipts**: Google snippet or study text with the claim highlighted.
+- **Tier board labels** say what the row means for the hero: "Destroys the Bear", "Beats the Bear (rough)", "50/50", "Bear Wins (rough)", "Bear Wins Easy"; the whole roster waits in the pool from the start, plus a "?" (`tier_extra`).
+
 ## 2. Writing rules
 
 - One beat = one sentence (two short ones at most). Cuts land on beat boundaries or on a word you pin with `at`.
@@ -36,7 +48,7 @@ Every spoken beat needs `shots`. Each shot is a search the hunter runs.
 | kind | use for | notes |
 |---|---|---|
 | `clip` | living animals, behaviour, landscapes, documentary CGI | cut to 5 s or less from the best uninterrupted camera shot |
-| `image` | paleoart, museum skeletons, skulls, size charts | moves 90 to 98 % or drifts 30 px; never static |
+| `image` | paleoart, museum skeletons, skulls, size charts | moves 90 to 98 % or drifts 30 px; never static; `label` adds big stat text |
 | `receipt` | the page a number comes from | `url` + `find` (exact words on the page). PDFs: add `page` |
 
 - **How many:** in the hook, one shot per 1.5-3 s (split each line into 2-3 shots, pin cuts with `at`, the word index where the shot starts). In the body, one visual per 4-7 s: lines up to ~6 s get one shot, longer lines get two. A clip can stretch to at most 1.33x its length (it is slowed slightly), so a long line over clips needs two shots.
@@ -53,6 +65,9 @@ Every spoken beat needs `shots`. Each shot is a search the hunter runs.
   "voice": "aura-2-zeus-en",
   "hero": "Grizzly Bear",
   "tier_title": "Ice Age Threat Ranking",
+  "title_style": "plain",
+  "doc_sources": ["Prehistoric Planet Ice Age", "Walking with Beasts", "BBC Earth"],
+  "tier_extra": ["?"],
   "tiers": [{"label": "S", "color": "#ff7f7f"}, {"label": "A", "color": "#ffbf7f"}, {"label": "B", "color": "#ffdf7f"}, {"label": "C", "color": "#ffff7f"}, {"label": "D", "color": "#bfff7f"}],
   "opponents": [{"name": "Dire Wolf", "thumb": {"kind": "image", "q": "dire wolf paleoart"}}],
   "beats": [

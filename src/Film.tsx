@@ -42,10 +42,10 @@ export const Film: React.FC<{film: FilmT}> = ({film}) => {
         else if (it.type === 'title') {
           // background: the next chapter's opponent thumbnail, if the hunter found one
           const opp = film.opponents?.[it.chapter - 1];
-          body = <TitleCard text={it.beat.title} bg={opp?.thumb?.src ? url(opp.thumb.src) : undefined} durationInFrames={f.durationInFrames} />;
+          body = <TitleCard text={it.beat.title} bg={opp?.thumb?.src ? url(opp.thumb.src) : undefined} durationInFrames={f.durationInFrames} plain={film.title_style === 'plain'} />;
         } else if (it.type === 'tier')
           body = (
-            <TierBoard film={id} rows={film.tiers ?? DEFAULT_TIERS} title={film.tier_title} placed={it.placed} pool={it.pool} drop={it.drop} dragAt={it.dragAt} />
+            <TierBoard film={id} rows={film.tiers ?? DEFAULT_TIERS} title={film.tier_title} placed={it.placed} pool={[...it.pool, ...(film.tier_extra ?? []).map((x) => ({item: x}))]} drop={it.drop} dragAt={it.dragAt} />
           );
         else if (it.type === 'wheel') body = <Wheel names={it.beat.wheel.names} pick={it.pick} />;
         else if (it.type === 'shot')

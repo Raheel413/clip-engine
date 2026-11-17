@@ -2,7 +2,7 @@ import React from 'react';
 import {AbsoluteFill, Img, interpolate, useCurrentFrame, useVideoConfig} from 'remotion';
 
 // Chapter title: Anton, all caps, pure white, thick black outline, 0.3 s cross dissolve in and out.
-export const TitleCard: React.FC<{text: string; bg?: string; durationInFrames: number}> = ({text, bg, durationInFrames}) => {
+export const TitleCard: React.FC<{text: string; bg?: string; durationInFrames: number; plain?: boolean}> = ({text, bg, durationInFrames, plain}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
   const fade = 0.3 * fps;
@@ -21,7 +21,16 @@ export const TitleCard: React.FC<{text: string; bg?: string; durationInFrames: n
         ) : null}
         <AbsoluteFill style={{alignItems: 'center', justifyContent: 'center', padding: 80}}>
           <div
-            style={{
+            style={plain ? {
+              fontFamily: 'Anton, Impact, sans-serif',
+              fontSize: size,
+              lineHeight: 1.05,
+              textAlign: 'center',
+              background: 'linear-gradient(#ffffff, #cfcfcf)',
+              WebkitBackgroundClip: 'text',
+              color: 'transparent',
+              filter: 'drop-shadow(0 6px 10px rgba(0,0,0,0.85))',
+            } : {
               fontFamily: 'Anton, Impact, sans-serif',
               fontSize: size,
               lineHeight: 1.05,

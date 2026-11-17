@@ -6,23 +6,23 @@
   "tier_title": "Ice Age Threat Ranking",
   "tiers": [
     {
-      "label": "S",
+      "label": "Destroys the Bear",
       "color": "#ff7f7f"
     },
     {
-      "label": "A",
+      "label": "Beats the Bear (rough)",
       "color": "#ffbf7f"
     },
     {
-      "label": "B",
+      "label": "50/50",
       "color": "#ffdf7f"
     },
     {
-      "label": "C",
+      "label": "Bear Wins (rough)",
       "color": "#ffff7f"
     },
     {
-      "label": "D",
+      "label": "Bear Wins Easy",
       "color": "#bfff7f"
     }
   ],
@@ -212,7 +212,8 @@
           "credit": "Pinterest",
           "source": "https://www.pinterest.com/pin/discover-the-ancient-dire-wolves-at-la-brea-tar-pits--157485318207174853/",
           "w": 736,
-          "h": 552
+          "h": 552,
+          "label": "Around 60 KG"
         }
       ],
       "vo": "vo/b05-177890ac.mp3",
@@ -398,10 +399,10 @@
     },
     {
       "seg": "tier",
-      "text": "Dire wolves go in C tier. A pack could hurt him, but he walks away.",
+      "text": "Dire wolves go in bear wins, rough. A pack could hurt him, but he walks away.",
       "tier": {
         "item": "Dire Wolf",
-        "row": "C"
+        "row": "Bear Wins (rough)"
       },
       "vo": "vo/b13-99841b1d.mp3",
       "vo_dur": 4.944
@@ -421,7 +422,8 @@
           "credit": "Pinterest",
           "source": "https://www.pinterest.com/pin/smilodon-fatalis-skeleton-at-la-county-museum--12384967723034953/",
           "w": 522,
-          "h": 662
+          "h": 662,
+          "label": "Up to 280 KG"
         },
         {
           "kind": "image",
@@ -595,13 +597,8 @@
       "text": "Smilodon probably wins if it lands the bite first. If it doesn't, the bear breaks those teeth and the fight is over.",
       "shots": [
         {
-          "kind": "image",
-          "q": "smilodon attack paleoart",
-          "src": "assets/b22-0.jpg",
-          "credit": "Science Photo Library",
-          "source": "https://www.sciencephoto.com/media/112284/view/smilodon-attacking-sloth",
-          "w": 800,
-          "h": 612
+          "kind": "clip",
+          "q": "smilodon hunting"
         },
         {
           "kind": "clip",
@@ -620,10 +617,10 @@
     },
     {
       "seg": "tier",
-      "text": "Smilodon goes in A tier. On a good day for the cat, the grizzly is dead.",
+      "text": "Smilodon beats the bear, rough. On a good day for the cat, the grizzly is dead.",
       "tier": {
         "item": "Smilodon",
-        "row": "A"
+        "row": "Beats the Bear (rough)"
       },
       "vo": "vo/b23-7b81a53f.mp3",
       "vo_dur": 5.304
@@ -643,7 +640,8 @@
           "credit": "Wikipedia",
           "source": "https://en.wikipedia.org/wiki/Arctodus",
           "w": 1280,
-          "h": 1192
+          "h": 1192,
+          "label": "Up to 900 KG"
         }
       ],
       "vo": "vo/b25-f07a579d.mp3",
@@ -660,7 +658,8 @@
           "credit": "Pinterest",
           "source": "https://www.pinterest.com/pin/shortfaced-bear-articulated-upright-skeleton-bone-clones-inc--130674826666365208/",
           "w": 650,
-          "h": 900
+          "h": 900,
+          "label": "Over 3 Meters"
         },
         {
           "kind": "clip",
@@ -720,13 +719,8 @@
       "text": "If it was a scavenger, think about what that means. It walked up to Smilodon and took its food.",
       "shots": [
         {
-          "kind": "image",
-          "q": "short-faced bear paleoart scavenging",
-          "src": "assets/b28-0.jpg",
-          "credit": "Reddit",
-          "source": "https://www.reddit.com/r/Paleontology/comments/y4rvwg/did_the_shortfaced_bear_and_its_kin_hunt_ancient/",
-          "w": 800,
-          "h": 572
+          "kind": "clip",
+          "q": "short-faced bear"
         },
         {
           "kind": "image",
@@ -838,10 +832,10 @@
     },
     {
       "seg": "tier",
-      "text": "The short-faced bear goes straight into S tier. This is the one that eats him.",
+      "text": "The short-faced bear goes straight to the top. This is the one that eats him.",
       "tier": {
         "item": "Short-faced Bear",
-        "row": "S"
+        "row": "Destroys the Bear"
       },
       "vo": "vo/b33-6dfad42d.mp3",
       "vo_dur": 4.296
@@ -893,5 +887,14 @@
     "https://www.tiktok.com/@unilad/video/7486088974734232854",
     "https://www.tiktok.com/@wandercamp/video/7064261732629384495",
     "https://www.tiktok.com/@wildlife288/video/7308761321061747999"
+  ],
+  "title_style": "plain",
+  "doc_sources": [
+    "Prehistoric Planet Ice Age",
+    "Walking with Beasts",
+    "BBC Earth"
+  ],
+  "tier_extra": [
+    "?"
   ]
 }
