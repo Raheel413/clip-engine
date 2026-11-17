@@ -134,7 +134,7 @@
     },
     {
       "seg": "stats",
-      "text": "Scientists have pulled more than four thousand of them out of the La Brea Tar Pits in Los Angeles.",
+      "text": "The biggest pile of their fossils ever found came out of the La Brea Tar Pits, right in the middle of Los Angeles.",
       "shots": [
         {
           "kind": "receipt",
@@ -265,23 +265,12 @@
     },
     {
       "seg": "stats",
-      "text": "Its jaw opened to around a hundred and twenty degrees. That's how it fit those teeth around a throat.",
+      "text": "Its jaw opened far wider than any cat alive today. That's how it got those teeth around a throat.",
       "shots": [
         {
           "kind": "receipt",
           "url": "https://en.wikipedia.org/wiki/Smilodon",
-          "find": "120",
-          "w": 1760,
-          "h": 1100,
-          "highlight": {
-            "x": 0.48190696022727275,
-            "y": 0.4816193181818182,
-            "w": 0.037162642045454546,
-            "h": 0.03636363636363636
-          },
-          "src": "assets/b16-0.png",
-          "credit": "en.wikipedia.org",
-          "source": "https://en.wikipedia.org/wiki/Smilodon"
+          "find": "bigger gape than that of modern cats"
         },
         {
           "kind": "image",
