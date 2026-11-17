@@ -13,7 +13,7 @@ export type Shot = {
   w?: number;
   h?: number;
   dur?: number;            // clip length in seconds
-  highlight?: {x: number; y: number; w: number; h: number};
+  highlight?: {x: number; y: number; w: number; h: number} | {x: number; y: number; w: number; h: number}[];
 };
 
 export type Beat = {

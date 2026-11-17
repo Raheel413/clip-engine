@@ -69,9 +69,16 @@ async function pageReceipt(s, out) {
       const r = document.createRange();
       r.setStart(n, i); r.setEnd(n, i + find.length);
       el.scrollIntoView({block: 'center'});
-      const rect = r.getBoundingClientRect();
-      if (rect.width < 2) continue;
-      return {x: rect.left, y: rect.top, w: rect.width, h: rect.height};
+      const rects = [...r.getClientRects()].filter((q) => q.width > 2);
+      if (!rects.length) continue;
+      // merge the pieces of each text line into one bar per line
+      const lines = [];
+      for (const q of rects) {
+        const l = lines.find((L) => Math.abs(L.y - q.top) < q.height / 2);
+        if (l) { const x1 = Math.max(l.x + l.w, q.right); l.x = Math.min(l.x, q.left); l.w = x1 - l.x; }
+        else lines.push({x: q.left, y: q.top, w: q.width, h: q.height});
+      }
+      return lines;
     }
     return null;
   }, s.find || '');
@@ -80,14 +87,16 @@ async function pageReceipt(s, out) {
   const VW = 1280, VH = 800, CW = 880, CH = 550;
   let clip = {x: 0, y: 0, width: CW, height: CH};
   if (box) {
-    const cx = Math.min(Math.max(box.x + box.w / 2, CW / 2), VW - CW / 2);
-    const cy = Math.min(Math.max(box.y + box.h / 2, CH / 2), VH - CH / 2);
+    const b0 = box[0];
+    const cx = Math.min(Math.max(b0.x + b0.w / 2, CW / 2), VW - CW / 2);
+    const cy = Math.min(Math.max(b0.y + b0.h / 2, CH / 2), VH - CH / 2);
     clip = {x: Math.round(cx - CW / 2), y: Math.round(cy - CH / 2), width: CW, height: CH};
   } else clip = {x: Math.round((VW - CW) / 2), y: 0, width: CW, height: CH};
   await page.screenshot({path: out, clip});
   await page.close();
   const pad = 3;
-  return {w: CW * 2, h: CH * 2, highlight: box ? {x: (box.x - clip.x - pad) / CW, y: (box.y - clip.y - pad / 2) / CH, w: (box.w + pad * 2) / CW, h: (box.h + pad) / CH} : undefined};
+  const hl = box ? box.map((b) => ({x: (b.x - clip.x - pad) / CW, y: (b.y - clip.y - pad / 2) / CH, w: (b.w + pad * 2) / CW, h: (b.h + pad) / CH})) : undefined;
+  return {w: CW * 2, h: CH * 2, highlight: hl};
 }
 
 async function pdfReceipt(s, out) {

@@ -51,7 +51,7 @@ for (const [sid, s] of each) {
   if (!s.src) { (allowMissing ? W : E)(`${sid}: no asset yet (${s.q ?? s.url ?? s.kind})`); continue; }
   if (!fs.existsSync(path.join(dir, s.src))) E(`${sid}: file missing ${s.src}`);
   if (s.kind === 'clip' && (s.dur ?? 0) > MAX_CLIP + 0.05) E(`${sid}: clip is ${f1(s.dur)}s, the limit is ${MAX_CLIP}s`);
-  if (s.kind === 'receipt' && !s.highlight) W(`${sid}: receipt has no highlight (words "${s.find}" not found on the page)`);
+  if (s.kind === 'receipt' && !(Array.isArray(s.highlight) ? s.highlight.length : s.highlight)) W(`${sid}: receipt has no highlight (words "${s.find}" not found on the page)`);
   if (s.source && s.kind !== 'receipt') {
     if (used.has(s.source) && !sid.startsWith('thumb')) E(`${sid}: same source as ${used.get(s.source)} (${s.source}); every asset is used once`);
     else used.set(s.source, sid);

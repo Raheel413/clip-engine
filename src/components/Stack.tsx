@@ -10,6 +10,7 @@ import {Attribution} from './Attribution';
 // Stills never sit still: they scale 90 % -> 98 % or drift 30 px over their whole duration.
 // Clips are punched in 104 % inside their own frame to crop broadcast logos.
 
+type Box = {x: number; y: number; w: number; h: number};
 const SHADOW = '0 15px 40px rgba(0,0,0,0.6)'; // distance 15, softness 40, opacity 60 %
 
 type Props = {shot: Shot; url: string; variant: number; durationInFrames: number};
@@ -70,7 +71,11 @@ export const Stack: React.FC<Props> = ({shot, url, variant, durationInFrames}) =
             objectFit: 'cover',
             transform: isVideo ? 'scale(1.04)' : undefined,
           })}
-          {shot.kind === 'receipt' && shot.highlight ? <Highlighter box={shot.highlight} /> : null}
+          {shot.kind === 'receipt' && shot.highlight
+            ? (Array.isArray(shot.highlight) ? shot.highlight : [shot.highlight]).map((b, i, all) => (
+                <Highlighter key={i} box={b} delay={0.5 + (0.4 / all.length) * i} span={0.4 / all.length} />
+              ))
+            : null}
         </div>
       </AbsoluteFill>
 
@@ -80,11 +85,12 @@ export const Stack: React.FC<Props> = ({shot, url, variant, durationInFrames}) =
 };
 
 // Yellow highlighter on a receipt: multiply blend, 60 % opacity, 0.4 s left-to-right wipe.
-const Highlighter: React.FC<{box: {x: number; y: number; w: number; h: number}}> = ({box}) => {
+// Several lines are wiped one after another inside the same 0.4 s.
+const Highlighter: React.FC<{box: Box; delay: number; span: number}> = ({box, delay, span}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
-  const start = Math.round(0.5 * fps);
-  const wipe = interpolate(frame, [start, start + 0.4 * fps], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  const start = delay * fps;
+  const wipe = interpolate(frame, [start, start + Math.max(1, span * fps)], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   return (
     <div
       style={{
