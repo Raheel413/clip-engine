@@ -404,8 +404,8 @@
         "item": "Dire Wolf",
         "row": "Bear Wins (rough)"
       },
-      "vo": "vo/b13-99841b1d.mp3",
-      "vo_dur": 4.944
+      "vo": "vo/b13-52589f59.mp3",
+      "vo_dur": 4.896
     },
     {
       "seg": "title",
@@ -622,8 +622,8 @@
         "item": "Smilodon",
         "row": "Beats the Bear (rough)"
       },
-      "vo": "vo/b23-7b81a53f.mp3",
-      "vo_dur": 5.304
+      "vo": "vo/b23-c02ce995.mp3",
+      "vo_dur": 5.184
     },
     {
       "seg": "title",
@@ -837,8 +837,8 @@
         "item": "Short-faced Bear",
         "row": "Destroys the Bear"
       },
-      "vo": "vo/b33-6dfad42d.mp3",
-      "vo_dur": 4.296
+      "vo": "vo/b33-df53af3b.mp3",
+      "vo_dur": 3.984
     },
     {
       "seg": "wheel",
