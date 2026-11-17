@@ -73,11 +73,11 @@
           "kind": "clip",
           "q": "grizzly bear walking toward camera",
           "src": "assets/b00-0.mp4",
-          "credit": "unilad / TikTok",
-          "source": "https://www.tiktok.com/@unilad/video/7486088974734232854",
-          "w": 576,
-          "h": 1024,
-          "dur": 4.97
+          "credit": "When reality change / Dailymotion",
+          "source": "https://www.dailymotion.com/video/xbjly3u",
+          "w": 360,
+          "h": 640,
+          "dur": 5
         },
         {
           "kind": "clip",
@@ -110,11 +110,11 @@
           "kind": "clip",
           "q": "ice sheet glacier calving",
           "src": "assets/b01-0.mp4",
-          "credit": "accuweather / TikTok",
-          "source": "https://www.tiktok.com/@accuweather/video/7681715437033344270",
-          "w": 576,
-          "h": 1024,
-          "dur": 4.97
+          "credit": "Richard Sidey / Instagram",
+          "source": "https://www.instagram.com/reel/DdzjfiDzg3_/",
+          "w": 720,
+          "h": 900,
+          "dur": 5
         },
         {
           "kind": "image",
@@ -176,10 +176,10 @@
           "kind": "clip",
           "q": "grizzly bears fighting",
           "src": "assets/b03-0.mp4",
-          "credit": "brockrayoutdoors / TikTok",
-          "source": "https://www.tiktok.com/@outdoorsmanbrockray/video/7667035479249833246",
-          "w": 576,
-          "h": 1022,
+          "credit": "Jennifer Fogle Smith / Instagram",
+          "source": "https://www.instagram.com/reel/DK7QqSZxB5q/",
+          "w": 360,
+          "h": 640,
           "dur": 5
         },
         {
@@ -187,11 +187,11 @@
           "q": "grizzly bear standing up on hind legs",
           "at": 4,
           "src": "assets/b03-1.mp4",
-          "credit": "wandercamp / TikTok",
-          "source": "https://www.tiktok.com/@wandercamp/video/7064261732629384495",
-          "w": 338,
-          "h": 590,
-          "dur": 5
+          "credit": "Tin Man Photography / Facebook",
+          "source": "https://www.facebook.com/TinManPhotography/videos/everytime-when-i-see-a-bear-standing-on-their-hind-legs-it-feels-like-time-is-fr/2010678299565901/",
+          "w": 960,
+          "h": 1708,
+          "dur": 4.97
         }
       ],
       "vo": "vo/b03-4c9430ac.mp3",
@@ -328,10 +328,10 @@
           "q": "bison running from wolves",
           "at": 9,
           "src": "assets/b10-1.mp4",
-          "credit": "wildlife288 / TikTok",
-          "source": "https://www.tiktok.com/@wildlife288/video/7308761321061747999",
-          "w": 576,
-          "h": 1024,
+          "credit": "Billy Fabian / Facebook",
+          "source": "https://www.facebook.com/Strategist.to.Naturalist/videos/wolves-chase-a-bison-herd-across-the-lamar-river-in-yellowstone/1672105411130644/",
+          "w": 540,
+          "h": 960,
           "dur": 4.97
         }
       ],
@@ -346,10 +346,10 @@
           "kind": "clip",
           "q": "grizzly bear swipe paw",
           "src": "assets/b11-0.mp4",
-          "credit": "detroitlions / TikTok",
-          "source": "https://www.tiktok.com/@detroitlions/video/7183798804657851691",
-          "w": 576,
-          "h": 1024,
+          "credit": "Moose Man Nature Photos / Facebook",
+          "source": "https://www.facebook.com/moosemannaturephotos/videos/hey-moose-fans-how-about-some-fun-brown-bear-grizzly-video-be-sure-to-watch-at-t/28127385756895073/",
+          "w": 540,
+          "h": 960,
           "dur": 4.97
         },
         {
@@ -357,10 +357,10 @@
           "q": "wolves surrounding grizzly bear",
           "at": 11,
           "src": "assets/b11-1.mp4",
-          "credit": "taylorlrabe / TikTok",
-          "source": "https://www.tiktok.com/@taylorlrabe/video/7659067766271397150",
-          "w": 576,
-          "h": 1024,
+          "credit": "Larry Taylor / Instagram",
+          "source": "https://www.instagram.com/reel/Dfx6aaRSP6f/",
+          "w": 536,
+          "h": 536,
           "dur": 4.97
         }
       ],
@@ -667,11 +667,11 @@
           "q": "grizzly bear standing tall",
           "at": 10,
           "src": "assets/b26-1.mp4",
-          "credit": "huntingclipss / TikTok",
-          "source": "https://www.tiktok.com/@huntingclipss/video/7541443322317966622",
-          "w": 576,
-          "h": 1024,
-          "dur": 4.97
+          "credit": "Chris Bryant / Dailymotion",
+          "source": "https://www.dailymotion.com/video/x9rnxhq",
+          "w": 512,
+          "h": 384,
+          "dur": 4.87
         }
       ],
       "vo": "vo/b26-288167e6.mp3",
@@ -724,9 +724,9 @@
           "q": "short-faced bear paleoart scavenging",
           "src": "assets/b28-0.jpg",
           "credit": "Reddit",
-          "source": "https://www.reddit.com/r/Naturewasmetal/comments/sx307t/shortfaced_bear_infographic_created_by_beth/",
-          "w": 1240,
-          "h": 1603
+          "source": "https://www.reddit.com/r/Paleontology/comments/y4rvwg/did_the_shortfaced_bear_and_its_kin_hunt_ancient/",
+          "w": 800,
+          "h": 572
         },
         {
           "kind": "image",
@@ -779,11 +779,11 @@
           "q": "brown bears fighting katmai",
           "at": 12,
           "src": "assets/b30-1.mp4",
-          "credit": "outsidemagazine / TikTok",
-          "source": "https://www.tiktok.com/@outsidemagazine/video/7560054773697776951",
-          "w": 576,
-          "h": 1024,
-          "dur": 4.97
+          "credit": "Andy Samarasena / Facebook",
+          "source": "https://www.facebook.com/andy.samarasena/videos/these-two-sub-adults-started-to-play-fight-as-we-were-getting-ready-to-board-our/1664749685352721/",
+          "w": 1920,
+          "h": 1080,
+          "dur": 5
         }
       ],
       "vo": "vo/b30-f8b06ed1.mp3",
@@ -815,11 +815,11 @@
           "kind": "clip",
           "q": "bear standoff river",
           "src": "assets/b32-0.mp4",
-          "credit": "plutosdestiny / TikTok",
-          "source": "https://www.tiktok.com/@plutosdestiny/video/7703738432547245345",
-          "w": 720,
-          "h": 720,
-          "dur": 5
+          "credit": "MOVIE ALL / Dailymotion",
+          "source": "https://www.dailymotion.com/video/x9yd1xs",
+          "w": 360,
+          "h": 640,
+          "dur": 4.97
         },
         {
           "kind": "clip",
@@ -880,5 +880,18 @@
       "vo": "vo/b35-931399a8.mp3",
       "vo_dur": 3.264
     }
+  ],
+  "rejected": [
+    "https://www.reddit.com/r/Naturewasmetal/comments/sx307t/shortfaced_bear_infographic_created_by_beth/",
+    "https://www.tiktok.com/@accuweather/video/7681715437033344270",
+    "https://www.tiktok.com/@detroitlions/video/7183798804657851691",
+    "https://www.tiktok.com/@huntingclipss/video/7541443322317966622",
+    "https://www.tiktok.com/@outdoorsmanbrockray/video/7667035479249833246",
+    "https://www.tiktok.com/@outsidemagazine/video/7560054773697776951",
+    "https://www.tiktok.com/@plutosdestiny/video/7703738432547245345",
+    "https://www.tiktok.com/@taylorlrabe/video/7659067766271397150",
+    "https://www.tiktok.com/@unilad/video/7486088974734232854",
+    "https://www.tiktok.com/@wandercamp/video/7064261732629384495",
+    "https://www.tiktok.com/@wildlife288/video/7308761321061747999"
   ]
 }
