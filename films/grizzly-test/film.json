@@ -139,7 +139,20 @@
         {
           "kind": "receipt",
           "url": "https://en.wikipedia.org/wiki/Dire_wolf",
-          "find": "La Brea Tar Pits"
+          "find": "La Brea Tar Pits",
+          "w": 1760,
+          "h": 1100,
+          "highlight": [
+            {
+              "x": 0.431640625,
+              "y": 0.4816193181818182,
+              "w": 0.13584872159090908,
+              "h": 0.03636363636363636
+            }
+          ],
+          "src": "assets/b06-0.png",
+          "credit": "en.wikipedia.org",
+          "source": "https://en.wikipedia.org/wiki/Dire_wolf"
         },
         {
           "kind": "image",
@@ -259,7 +272,26 @@
         {
           "kind": "receipt",
           "url": "https://en.wikipedia.org/wiki/Smilodon",
-          "find": "bigger gape than that of modern cats"
+          "find": "bigger gape than that of modern cats",
+          "w": 1760,
+          "h": 1100,
+          "highlight": [
+            {
+              "x": 0.36672585227272725,
+              "y": 0.4725284090909091,
+              "w": 0.26560724431818183,
+              "h": 0.03636363636363636
+            },
+            {
+              "x": 0.09886363636363636,
+              "y": 0.5198011363636363,
+              "w": 0.04016335227272727,
+              "h": 0.03636363636363636
+            }
+          ],
+          "src": "assets/b16-0.png",
+          "credit": "en.wikipedia.org",
+          "source": "https://en.wikipedia.org/wiki/Smilodon"
         },
         {
           "kind": "image",
@@ -391,7 +423,20 @@
         {
           "kind": "receipt",
           "url": "https://en.wikipedia.org/wiki/Arctodus",
-          "find": "scavenger"
+          "find": "scavenger",
+          "w": 1760,
+          "h": 1100,
+          "highlight": [
+            {
+              "x": 0.4541725852272727,
+              "y": 0.48267045454545454,
+              "w": 0.09071377840909091,
+              "h": 0.03636363636363636
+            }
+          ],
+          "src": "assets/b27-0.png",
+          "credit": "en.wikipedia.org",
+          "source": "https://en.wikipedia.org/wiki/Arctodus"
         },
         {
           "kind": "image",
