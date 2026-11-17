@@ -393,7 +393,7 @@ def hunt_clip(shot, sid, line, film_dir, used, args):
                 continue
             tried.add(url)
             w, h, length = probe(path)
-            if h < 360 or length < MIN_CLIP:
+            if min(w, h) < 480 or length < MIN_CLIP:  # too small to hold up in a 1080p video
                 log(f"      skip: {w}x{h}, {length:.1f}s")
                 continue
             if landscape_only and w < h * 1.2:
